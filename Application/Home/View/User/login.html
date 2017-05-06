@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<title>baobaowan</title>
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/myreset.css" />
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/login.css" />
+		<script src="__PUBLIC__/Home/js/jquery.min.js"></script>
+		<script src="__PUBLIC__/Home/js/tools.js"></script>
+	</head>
+	<body>
+		
+		<div class="div_input">
+			<p><span>手机号</span><input type="text" data-url="{:U('getCode')}" id="tel" /><input type="button" id="getcode" value="获取验证码" /></p>
+			<p><span>验证码</span><input type="text" id="iden_code" data-indexurl="{:U('Shop/index')}" data-conurl="{:U('checkCode')}" /></p>
+		</div>
+		<button type="button" id="login_btn">登录</button>
+		
+		<!--js-->
+		<script src="__PUBLIC__/Home/js/login.js"></script>
+	</body>
+</html>

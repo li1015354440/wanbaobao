@@ -1,0 +1,224 @@
+.header {
+  width: 100%;
+  height: 1.8rem;
+  background: url(../img/bg.png) no-repeat center;
+  background-size: 100%;
+  overflow: hidden;
+}
+.header .head-portrait {
+  box-sizing: border-box;
+  margin: 0 auto;
+  margin-top: .31rem;
+  width: .94rem;
+  height: .94rem;
+  border-radius: 100%;
+  border: 2px solid #fff;
+  background: url(../img/weidenglu.png) no-repeat center;
+  background-size: cover;
+  overflow: hidden;
+}
+.header > p {
+  margin-top: .05rem;
+  font-size: .14rem;
+  font-weight: 400;
+  color: #fff;
+}
+.all-orders {
+  width: 93.6%;
+  margin: 0 auto;
+  position: relative;
+  height: .5rem;
+  border-bottom: 1px solid #eee;
+  line-height: .5rem;
+  background: #fff;
+}
+.all-orders > span {
+  display: block;
+}
+.all-orders > span:first-child {
+  float: left;
+  font-size: .15rem;
+  color: #333;
+}
+.all-orders > span:nth-child(2) {
+  float: right;
+  font-size: .11rem;
+  color: #999;
+  margin-right: .12rem;
+}
+.all-orders > span > a {
+  display: block;
+  color: #999;
+}
+.all-orders:after {
+  content: "";
+  position: absolute;
+  width: .07rem;
+  height: .155rem;
+  background: url(../img/jiantou@2x.png) no-repeat center;
+  background-size: 100%;
+  right: 0;
+  top: 0.175rem;
+}
+.nav {
+  width: 100%;
+  font-size: .12rem;
+  overflow: hidden;
+  background: #fff;
+}
+.nav > li {
+  float: left;
+  width: 25%;
+  height: .6rem;
+  margin-top: .19rem;
+}
+.nav > li > a {
+  display: block;
+  padding-top: .35rem;
+  width: 100%;
+  color: #666;
+}
+.nav > li:first-child {
+  background: url(../img/daifukuan.png) no-repeat center 0;
+  background-size: 26%;
+}
+.nav > li:nth-child(2) {
+  background: url(../img/daifahuo.png) no-repeat center 0;
+  background-size: 26%;
+}
+.nav > li:nth-child(3) {
+  background: url(../img/daishouhuo.png) no-repeat center 0;
+  background-size: 30%;
+}
+.nav > li:last-child {
+  background: url(../img/yiwancheng.png) no-repeat center 0;
+  background-size: 25%;
+}
+.sets {
+  width: 93.6%;
+  margin: 0 auto;
+  background: #fff;
+  font-size: .14rem;
+}
+.sets > li {
+  height: .5rem;
+  line-height: .5rem;
+  text-align: left;
+  padding-left: .275rem;
+  position: relative;
+}
+.sets > li > a {
+  display: block;
+  width: 100%;
+  color: #333;
+}
+.sets > li > a > span {
+  display: block;
+  float: right;
+  margin-right: .2rem;
+  color: #666;
+}
+.sets > li:not(:last-child) {
+  border-bottom: 1px solid #eee;
+}
+.sets > li:first-child:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: .18rem;
+  width: .15rem;
+  height: .145rem;
+  background: url(../img/dizhi@2x.png) no-repeat center;
+  background-size: 100%;
+}
+.sets > li:nth-child(2):before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: .18rem;
+  width: .15rem;
+  height: .145rem;
+  background: url(../img/kefu@2x.png) no-repeat center;
+  background-size: 100%;
+}
+.sets > li:last-child {
+  display: none;
+}
+.sets > li:last-child:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: .18rem;
+  width: .15rem;
+  height: .145rem;
+  background: url(../img/tuichu@2x.png) no-repeat center;
+  background-size: 100%;
+}
+.sets > li:after {
+  content: "";
+  position: absolute;
+  width: .07rem;
+  height: .155rem;
+  background: url(../img/jiantou@2x.png) no-repeat center;
+  background-size: 100%;
+  right: 0;
+  top: 0.175rem;
+}
+.alert-bg {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 99;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  font-size: .13rem;
+}
+.alert-bg .alert-content {
+  position: absolute;
+  top: 2.045rem;
+  left: .705rem;
+  z-index: 100;
+  background: #fff;
+  width: 2.34rem;
+  height: 1.46rem;
+  border-radius: .085rem;
+}
+.alert-bg .alert-content > p:first-child {
+  margin-top: .195rem;
+  color: #333;
+  font-size: .13rem;
+}
+.alert-bg .alert-content > p:nth-child(2) {
+  margin-top: .265rem;
+  color: #666;
+  font-size: .12rem;
+}
+.alert-bg .alert-content > div {
+  box-sizing: border-box;
+  float: left;
+  margin-top: .26rem;
+  width: .9rem;
+  height: .34rem;
+  border: 1px solid #2b2b2b;
+  font-size: .13rem;
+  line-height: .34rem;
+  border-radius: .17rem;
+  margin-left: .17rem;
+}
+.alert-bg .alert-content > div > a {
+  display: block;
+}
+.alert-bg .alert-content > div:nth-child(3) > a {
+  color: #2b2b2b;
+}
+.alert-bg .alert-content > div:last-child {
+  background: #2b2b2b;
+}
+.alert-bg .alert-content > div:last-child > a {
+  color: #fff;
+}
+.show {
+  display: block;
+}

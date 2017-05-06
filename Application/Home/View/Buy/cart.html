@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+		<title>baobaowan</title>
+		<!--<link rel="stylesheet" type="text/css" href="../css/myreset.css" />-->
+		<!--<link rel="stylesheet" type="text/css" href="../css/shop-car.css"/>-->
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/myreset.css" />
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/shop-car.css"/>
+		<!--<script src="../js/jquery.min.js"></script>-->
+		<!--<script src="../js/tools.js"></script>-->
+		<script src="__PUBLIC__/Home/js/jquery.min.js"></script>
+		<script src="__PUBLIC__/Home/js/tools.js"></script>
+	</head>
+
+	<body>
+		<ul class="shop-calr-list" id="check-list">
+			<!--<li data-goods_id="1" class="move_active">-->
+				<!--<span class="check" check="true"></span>-->
+				<!--<img src="../img/img_2.png" alt="" />-->
+				<!--<div class="shop-contant">-->
+					<!--<p>WanBaoBao万宝宝小小系列热气球18K白金水晶钻石项链</p>-->
+					<!--<div>¥<span class="price">9999.<small>00</small></span></div>-->
+					<!--<div>-->
+						<!--<a href="#" class="less">-</a>-->
+						<!--<span class="counts">1</span>-->
+						<!--<a href="#" class="add">+</a>-->
+					<!--</div>-->
+				<!--</div>-->
+				<!--<div class="shop-del">-->
+					<!--删除-->
+				<!--</div>-->
+			<!--</li>-->
+			<!--<li data-goods_id="2">-->
+				<!--<span class="check" check="true"></span>-->
+				<!--<img src="../img/img_2.png" alt="" />-->
+				<!--<div>-->
+					<!--<p>WanBaoBao万宝宝小小系列热气球18K白金水晶钻石项链</p>-->
+					<!--<div>¥<span class="price">8888.<small>00</small></span></div>-->
+					<!--<div>-->
+						<!--<a href="#" class="less">-</a>-->
+						<!--<span class="counts">2</span>-->
+						<!--<a href="#" class="add">+</a>-->
+					<!--</div>-->
+				<!--</div>-->
+				<!--<div class="shop-del">-->
+					<!--删除-->
+				<!--</div>-->
+			<!--</li>-->
+			<!--<li data-goods_id="3">-->
+				<!--<span class="check" check="true"></span>-->
+				<!--<img src="../img/img_2.png" alt="" />-->
+				<!--<div>-->
+					<!--<p>WanBaoBao万宝宝小小系列热气球18K白金水晶钻石项链</p>-->
+					<!--<div>¥<span class="price">7777.<small>00</small></span></div>-->
+					<!--<div>-->
+						<!--<a href="#" class="less">-</a>-->
+						<!--<span class="counts">3</span>-->
+						<!--<a href="#" class="add">+</a>-->
+					<!--</div>-->
+				<!--</div>-->
+				<!--<div class="shop-del">-->
+					<!--删除-->
+				<!--</div>-->
+			<!--</li>-->
+			<volist name="cart_list" id="cart">
+				<li data-goods_id="{$cart['goods_id']}">
+					<span class="check" check="true"></span>
+					<img src="__PUBLIC__/Thumb/{$cart['thumb']}" alt="" />
+					<div>
+						<p>{$cart['series_title']}{$cart['name']}</p>
+						<div>¥<span class="price">{$cart['shop_price']}.<small>00</small></div>
+						<div>
+							<a href="#" class="less">-</a>
+							<span class="counts">{$cart['buy_quantity']}</span>
+							<a href="#" class="add">+</a>
+						</div>
+					</div>
+					<div class="shop-del">
+						删除
+					</div>
+				</li>
+			</volist>
+		</ul>
+		
+		<!--placeholder2 占位元素2-->
+		<div class="placeholder2"></div>
+
+		<div class="settle-accounts">
+			<div id="checks" check="true">
+				<span></span>
+				<span>全选</span>
+			</div>
+			<div>
+				<span>总计：</span>
+				<span>¥<span id="total">9999.<smallest>00</smallest></span></span>
+				<a href="javascript:;" id="accounts">结算</a>
+			</div>
+		</div>
+
+		<!--placeholder 占位元素-->
+		<div class="placeholder"></div>
+
+		<!--menu-->
+		<!--<ul class="menu" id="menu">-->
+			<!--<li>-->
+				<!--<a href="index.html">-->
+					<!--<img src="../img/shouye_defauflt@2x.png" alt="" />-->
+					<!--<span>首页</span>-->
+				<!--</a>-->
+			<!--</li>-->
+			<!--<li>-->
+				<!--<a href="series.html">-->
+					<!--<img src="../img/xilie_defauflt.png" alt="" />-->
+					<!--<span>系列</span>-->
+				<!--</a>-->
+			<!--</li>-->
+			<!--<li>-->
+				<!--<a href="shop-car.html">-->
+					<!--<img src="../img/gouwuche_pressed.png" alt="" />-->
+					<!--<span>购物车</span>-->
+				<!--</a>-->
+			<!--</li>-->
+			<!--<li>-->
+				<!--<a href="my.html">-->
+					<!--<img src="../img/wode_defauflt@2x.png" alt="" />-->
+					<!--<span>我的</span>-->
+				<!--</a>-->
+			<!--</li>-->
+		<!--</ul>-->
+		<!--menu-->
+		<ul class="menu" id="menu">
+			<li>
+				<a href="{:U('Shop/index')}">
+					<img src="__PUBLIC__/Home/img/shouye_defauflt@2x.png" alt="" />
+					<span>首页</span>
+				</a>
+			</li>
+			<li>
+				<a href="{:U('Shop/series')}">
+					<img src="__PUBLIC__/Home/img/xilie_defauflt@2x.png" alt="" />
+					<span>系列</span>
+				</a>
+			</li>
+			<li>
+				<a href="{:U('Buy/cart')}">
+					<img src="__PUBLIC__/Home/img/gouwuche_pressed@2x.png" alt="" />
+					<span>购物车</span>
+				</a>
+			</li>
+			<li>
+				<a href="{:U('User/my')}">
+					<img src="__PUBLIC__/Home/img/wode_defauflt@2x.png" alt="" />
+					<span>我的</span>
+				</a>
+			</li>
+		</ul>
+		
+		<!--js-->
+		<!--<script src="../js/shop-car.js"></script>-->
+		<script src="__PUBLIC__/Home/js/shop-car.js"></script>
+	</body>
+
+</html>

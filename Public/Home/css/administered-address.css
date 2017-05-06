@@ -1,0 +1,72 @@
+body {
+  background: #f5f5f5;
+}
+.address-list {
+  font-size: .14rem;
+  text-align: left;
+}
+.address-list li {
+  padding: 0 .12rem;
+  background: #fff;
+  margin-top: .06rem;
+  overflow: hidden;
+}
+.address-list li > p:first-child {
+  margin-top: .2rem;
+  color: #333;
+}
+.address-list li > p:first-child > span {
+  font-size: .15rem;
+}
+.address-list li > p:first-child > span:nth-child(2) {
+  margin-left: .2rem;
+}
+.address-list li > p:nth-child(2) {
+  color: #666;
+  margin-top: .15rem;
+  margin-bottom: .2rem;
+}
+.address-list li > div {
+  height: .48rem;
+  border-top: 1px solid #ededed;
+  line-height: .48rem;
+}
+.address-list li > div > a {
+  display: block;
+  float: right;
+  padding-left: .25rem;
+  position: relative;
+  color: #666;
+}
+.address-list li > div > a:before {
+  content: "";
+  position: absolute;
+  top: .14rem;
+  left: 0;
+  width: .18rem;
+  height: .18rem;
+  background: url(../img/edit.png) no-repeat center;
+  background-size: 100%;
+}
+.address-list li > div > a:last-child {
+  margin-right: .2rem;
+}
+.address-list li > div > a:last-child:before {
+  background: url(../img/delete.png) no-repeat center;
+  background-size: 100%;
+}
+.new-address {
+  display: block;
+  color: #fff;
+  box-sizing: border-box;
+  position: fixed;
+  bottom: .4rem;
+  left: .225rem;
+  width: 88%;
+  height: .49rem;
+  border: 1px solid #2b2b2b;
+  font-size: .16rem;
+  line-height: .49rem;
+  border-radius: .245rem;
+  background: #2b2b2b;
+}

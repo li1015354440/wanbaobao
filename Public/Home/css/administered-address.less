@@ -1,0 +1,76 @@
+body {
+    background: #f5f5f5;
+}
+.address-list {
+    font-size: .14rem;
+    text-align: left;
+//  background: #fff;
+    li {
+        padding: 0 .12rem;
+        background: #fff;
+        margin-top: .06rem;
+        overflow: hidden;
+        >p {
+            &:first-child {
+                margin-top: .2rem;
+                color: #333;
+                >span {
+                    font-size: .15rem;
+                    &:nth-child(2) {
+                        margin-left: .2rem;
+                    }
+                }
+            }
+            &:nth-child(2) {
+                color: #666;
+                margin-top: .15rem;
+                margin-bottom: .2rem;
+            }
+        }
+        >div {
+            height: .48rem;
+            border-top: 1px solid #ededed;
+            line-height: .48rem;
+            >a {
+                display: block;
+                float: right;
+                padding-left: .25rem;
+                position: relative;
+                color: #666;
+                &:before {
+                    content: "";
+                    position: absolute;
+                    top: .14rem;
+                    left:0;
+                    width: .18rem;
+                    height: .18rem;
+                    background: url(../img/edit.png) no-repeat center;
+                    background-size: 100%;
+                }
+                &:last-child {
+                    margin-right: .2rem;
+                    &:before {
+                        background: url(../img/delete.png) no-repeat center;
+                        background-size: 100%;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.new-address {
+    display: block;
+    color: #fff;
+    box-sizing: border-box;
+    position: fixed;
+    bottom: .4rem;
+    left: .225rem;
+    width: 88%;
+    height: .49rem;
+    border: 1px solid #2b2b2b;
+    font-size: .16rem;
+    line-height: .49rem;
+    border-radius: .245rem;
+    background: #2b2b2b;
+}

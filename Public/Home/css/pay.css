@@ -1,0 +1,213 @@
+.pay-header {
+  position: relative;
+  padding: 0 .12rem;
+  height: .88rem;
+  background: #fff;
+  font-size: .15rem;
+  text-align: left;
+  overflow: auto;
+}
+.pay-header:after {
+  content: "";
+  position: absolute;
+  right: .12rem;
+  top: .38rem;
+  width: .07rem;
+  height: .155rem;
+  background: url(../img/jiantou@2x.png) no-repeat center;
+  background-size: 100%;
+}
+.pay-header .nobody {
+  display: block;
+  width: 100%;
+  height: 100%;
+  color: #333;
+}
+.pay-header .nobody > span {
+  display: block;
+  float: left;
+  margin-top: .38rem;
+  font-size: .15rem;
+}
+.pay-header .nobody > span:first-child {
+  margin-top: .22rem;
+  margin-right: .12rem;
+  width: .44rem;
+  height: .44rem;
+  background: url(../img/tianjiadizhi.png) no-repeat center;
+  background-size: 100%;
+  border-radius: .02rem;
+}
+.pay-header .yesbody {
+  display: block;
+  width: 100%;
+  height: 100%;
+  color: #333;
+  overflow: hidden;
+  position: relative;
+}
+.pay-header .yesbody:before {
+  content: "";
+  position: absolute;
+  top: .34rem;
+  left: .12rem;
+  width: .155rem;
+  height: .2rem;
+  background: url(../img/dizhi.png) no-repeat center;
+  background-size: 100%;
+}
+.pay-header .yesbody > p {
+  width: 78%;
+  overflow: hidden;
+  margin-left: .4rem;
+  white-space: normal;
+}
+.pay-header .yesbody > p:first-child {
+  margin-top: .25rem;
+}
+.pay-header .yesbody > p:first-child > span:last-child {
+  margin-left: .2rem;
+}
+.pay-header .yesbody > p:last-child {
+  max-height: .3rem;
+  margin-top: .12rem;
+  font-size: .14rem;
+  padding-right: .12rem;
+  margin-bottom: .12rem;
+  color: #666;
+  line-height: .15rem;
+}
+.orders-list li:not(:last-child) > div > p:nth-child(2) {
+  color: #333;
+}
+.orders-list li:last-child {
+  display: none;
+}
+.commodity-msg {
+  padding: 0 .12rem;
+  background: #fff;
+  font-size: .14rem;
+  text-align: left;
+}
+.commodity-msg > li:not(:last-child) {
+  height: .49rem;
+  border-bottom: 1px solid #EBEBEB;
+  line-height: .49rem;
+  color: #333;
+}
+.commodity-msg > li:not(:last-child) > span {
+  display: block;
+  float: left;
+}
+.commodity-msg > li:not(:last-child) > span:last-child {
+  float: right;
+  color: #666;
+}
+.commodity-msg > li:not(:last-child):first-child > span:last-child {
+  color: #DCB469;
+  font-weight: 400;
+}
+.commodity-msg > li:last-child > span {
+  display: block;
+  margin-top: .18rem;
+}
+.commodity-msg > li:last-child > textarea {
+  border: none;
+  outline: none;
+  display: block;
+  margin-top: .18rem;
+  padding: .1rem;
+  width: 93.6%;
+  height: .88rem;
+  background: #f5f5f5;
+  color: #999;
+  border-radius: .02rem;
+}
+.pay_alert {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.2);
+  font-size: .14rem;
+}
+.pay_alert .address-list {
+  position: absolute;
+  bottom: 0%;
+  width: 100%;
+  height: 0%;
+  background: #fff;
+  text-align: left;
+  padding: .12rem 0;
+  overflow: auto;
+}
+.pay_alert .address-list li {
+  padding: 0 .12rem;
+  height: .8rem;
+  background: #fff;
+  margin-top: .06rem;
+  line-height: .3rem;
+  position: relative;
+  overflow: hidden;
+}
+.pay_alert .address-list li p:first-child {
+  color: #333;
+}
+.pay_alert .address-list li p:first-child > span {
+  font-size: .15rem;
+}
+.pay_alert .address-list li p:first-child > span:nth-child(2) {
+  margin-left: .2rem;
+}
+.pay_alert .address-list li p:nth-child(2) {
+  color: #666;
+  margin-bottom: .2rem;
+}
+.pay_alert .address-list li > span {
+  content: "";
+  position: absolute;
+  width: .16rem;
+  height: .16rem;
+  background: url(../img/defauflt.png) no-repeat center;
+  background-size: 100%;
+  top: 0.175rem;
+  right: .12rem;
+}
+.pay_alert .address-list li .active {
+  background: url(../img/pressed.png) no-repeat center;
+  background-size: 100%;
+}
+.pay_alert .address-list li > div {
+  height: 90%;
+  border-bottom: 1px solid #ebebeb;
+}
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: .49rem;
+  background: #fff;
+  box-shadow: 0 -1px 10px 0 #dddddd;
+  font-size: .14rem;
+  line-height: .49rem;
+  text-align: left;
+  color: #333;
+}
+.footer > span:first-child {
+  margin-left: .12rem;
+}
+.footer > span:nth-child(2) {
+  font-size: .16rem;
+  color: #F01D40;
+}
+.footer > a {
+  display: block;
+  float: right;
+  width: 1rem;
+  height: 100%;
+  background: #2b2b2b;
+  color: #fff;
+  text-align: center;
+}

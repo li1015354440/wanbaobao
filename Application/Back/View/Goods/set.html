@@ -1,0 +1,377 @@
+<extend name="Common/back" />
+<block name="content">
+    <div id="content">
+        <div class="page-header">
+            <div class="container-fluid">
+                <div class="pull-right">
+                    <button type="submit" form="form-goods" data-toggle="tooltip" title="保存" class="btn btn-primary">
+                        <i class="fa fa-save"></i>
+                    </button>
+                    <a href="{:U('list')}" data-toggle="tooltip" title="取消" class="btn btn-default">
+                        <i class="fa fa-reply"></i>
+                    </a>
+                </div>
+                <h1>商品管理</h1>
+                <ul class="breadcrumb">
+                    <li>
+                        <a href="{:U('Manage/index')}">首页</a>
+                    </li>
+                    <li>
+                        <a href="#">商品管理</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        <i class="fa fa-pencil"></i>
+                        设置商品
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    <form action="{:U('set')}" method="post" enctype="multipart/form-data" id="form-goods" class="form-horizontal" autocomplete="off">
+                        <if condition="isset($data['goods_id'])">
+                            <input type="hidden" name="goods_id" value="{$data['goods_id']}" id="input-goods_id">
+                        </if>
+                        <ul class="nav nav-tabs">
+                            <li class="active">
+                                <a href="#tab-general" data-toggle="tab">基本信息</a>
+                            </li>
+                            <li>
+                                <a href="#tab-image" data-toggle="tab">添加相册</a>
+                            </li>
+                        </ul>
+
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="tab-general">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label" for="input-name">商品名称</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" name="name" value="{$data['name']}" placeholder="商品名称" id="input-name" class="form-control" data-remoteurl="{:U('ajax')}"/>
+                                        <if condition="isset($message['name'])">
+                                            <label id="tishi" for="input-name" class="text-danger">{$message['name']}</label>
+                                        </if>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label" for="input-type_id">类型</label>
+                                    <div class="col-sm-10">
+                                        <select class="form-control" name="type_id" id="input-type_id" >
+                                            <option value="">--请选择--</option>
+                                            <volist name="goods_type" id="type">
+                                                <option value="{$type['type_id']}"
+                                                <if condition="$data['type_id'] heq $type['type_id']">selected</if>>
+                                                {$type['title']}
+                                                </option>
+                                            </volist>
+                                        </select>
+                                        <if condition="isset($message['type_id'])">
+                                            <label for="input-type_id" class="text-danger">{$message['type_id']}</label>
+                                        </if>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label" for="input-series_id"> 系列</label>
+                                    <div class="col-sm-10">
+                                        <select class="form-control" name="series_id" id="input-series_id" >
+                                            <option value="">--请选择--</option>
+                                            <volist name="goods_series" id="series">
+                                                <option value="{$series['series_id']}"
+                                                <if condition="$data['series_id'] heq $series['series_id']">selected</if>>
+                                                {$series['title']}
+                                                </option>
+                                            </volist>
+                                        </select>
+                                        <if condition="isset($message['type_id'])">
+                                            <label for="input-series_id" class="text-danger">{$message['serires_id']}</label>
+                                        </if>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                <label class="col-sm-2 control-label" for="input-is_online">是否上架</label>
+                                <div class="col-sm-10">
+                                    <select class="form-control" name="is_online" id="input-is_online" >
+                                        <option value="1" <if condition="$data['is_online'] eq 1">selected</if>>
+                                        是
+                                        </option>
+                                        <option value="0" <if condition="$data['is_online'] heq 0">selected</if>>
+                                        否
+                                        </option>
+                                    </select>
+                                    <if condition="isset($message['type_id'])">
+                                        <label for="input-type_id" class="text-danger">{$message['is_online']}</label>
+                                    </if>
+                                </div>
+                            </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label" for="input-shop_price">商品价格</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" name="shop_price" value="{$data['shop_price']}" placeholder="商品价格" id="input-shop_price" class="form-control"/>
+                                        <if condition="isset($message['shop_price'])">
+                                            <label for="input-shop_price" class="text-danger">{$message['shop_price']}</label>
+                                        </if>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label" for="input-is_hot">是否热销</label>
+                                    <div class="col-sm-10">
+                                        <select class="form-control" name="is_hot" id="input-is_hot" >
+                                            <option value="0" <if condition="$data['is_hot'] heq 0">selected</if>>
+                                            否
+                                            </option>
+                                            <option value="1" <if condition="$data['is_hot'] eq 1">selected</if>>
+                                            是
+                                            </option>
+                                        </select>
+                                        <if condition="isset($message['type_id'])">
+                                            <label for="input-type_id" class="text-danger">{$message['is_hot']}</label>
+                                        </if>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label" for="input-stock">库存</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" name="stock" value="{$data['stock']}" placeholder="库存" id="input-stock" class="form-control" />
+                                        <if condition="isset($message['stock'])">
+                                            <label for="input-name" class="text-danger">{$message['stock']}</label>
+                                        </if>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label" for="input-image">原始图像</label>
+                                    <div class="col-sm-6">
+                                        <input type="hidden" name="image" id="input-image-value" value="{$data['image']}">
+                                        <input type="hidden" name="thumb" id="input-image_thumb-value" value="{$data['thumb']}">
+                                        <span class="btn btn-success fileinput-button">
+                                            <i class="glyphicon glyphicon-plus"></i>
+                                            <span>添加商品主图</span>
+                                            <!-- The file input field used as target for the file upload widget -->
+                                            <input id="input-image" name="image" type="file" data-uploadurl="{:U('upload')}">
+                                        </span>
+                                        <if condition="isset($message['image'])">
+                                            <label for="input-image" class="text-danger">{$message['image']}</label>
+                                        </if>
+                                    </div>
+                                    <div class="class-sm-4">
+                                        <img src="__ROOT__/Public/Thumb/{$data['thumb']}" alt="" id="image-show" class="img-thumbnail" style="max-height: 50px;<if condition=" $data['thumb'] eq ''">display:none;</if>" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label" for="input-image">描述图</label>
+                                    <div class="col-sm-6">
+                                        <input type="hidden" name="description" id="input-description-value" value="{$data['description']}">
+                                        <input type="hidden" name="des_thumb" id="input-description_thumb-value" value="{$data['des_thumb']}">
+                                        <span class="btn btn-success fileinput-button">
+                                            <i class="glyphicon glyphicon-plus"></i>
+                                            <span>添加商品描述</span>
+                                            <!-- The file input field used as target for the file upload widget -->
+                                            <input id="input-image-description" name="description" type="file" data-uploadurl="{:U('upload',['type'=>'description'])}">
+                                        </span>
+                                        <if condition="isset($message['description'])">
+                                            <label for="input-image" class="text-danger">{$message['image']}</label>
+                                        </if>
+                                    </div>
+                                    <div class="class-sm-4">
+                                        <img src="__PUBLIC__/Thumb/{$data['des_thumb']}" alt="" id="show-description" class="img-thumbnail" style="max-height: 50px; <if condition = "$data['des_thumb'] eq ''">display:none;</if>" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="tab-image">
+                                <div class="table-responsive">
+                                    <table id="table-galleries" class="table table-striped table-bordered table-hover"
+                                           data-removeurl="{:U('remove')}">
+                                        <thead>
+                                        <tr>
+                                            <td class="text-left">图片</td>
+                                            <td class="text-right">排序</td>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <volist name="gallery_list" id="gallery">
+                                            <tr id="image-row-{$key}">
+                                                <td class="text-left">
+                                                    <input type="hidden" name="galleries[{$key}][gallery_id]"
+                                                           value="{$gallery['gallery_id']}">
+                                                    <img src="__PUBLIC__/Thumb/{$gallery['thumb_path']}" width="100" height="90" alt="NO-IMG" title="相册图片">
+                                                </td>
+                                                <td class="text-right">
+                                                    <input name="galleries[{$key}][sort_number]"
+                                                           value="{$gallery['sort_number']}" placeholder="排序"
+                                                           class="form-control valid" aria-invalid="false" type="text">
+                                                </td>
+                                                <td class="text-left">
+                                                    <button type="button" data-toggle="tooltip" title=""
+                                                            class="btn btn-danger remove-button"
+                                                            data-original-title="移除"
+                                                            data-gallery_id="{$gallery['gallery_id']}"><i
+                                                            class="fa fa-minus-circle"></i></button>
+                                                </td>
+                                            </tr>
+                                        </volist>
+                                        </tbody>
+                                        <tfoot>
+                                        <tr>
+                                            <td colspan="4" class="text-right">
+                                                    <span class="btn btn-success fileinput-button">
+                                                        <i class="glyphicon glyphicon-plus"></i>
+                                                        <span>选择图片</span>
+                                                            <input id="input-galleries" name="galleries" type="file"
+                                                                   multiple
+                                                                   data-uploadurl="{:U('upload', ['type'=>'gallery'])}">
+                                                    </span>
+                                            </td>
+                                        </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</block>
+<block name="appendCss">
+    <link href="__PUBLIC__/Back/jqueryFileUpload/css/jquery.fileupload.css" type="text/css" rel="stylesheet" media="screen" />
+    <link href="__PUBLIC__/Back/jqueryFileUpload/css/jquery.fileupload-ui.css" type="text/css" rel="stylesheet" media="screen" />
+
+</block>
+
+<block name="appendJs">
+    <script src="__PUBLIC__/Back/jqueryFileUpload/js/vendor/jquery.ui.widget.js"></script>
+    <script src="__PUBLIC__/Back/jqueryFileUpload/js/jquery.fileupload.js"></script>
+    <script src="__PUBLIC__/Back/validate/jquery.validate.min.js"></script>
+    <script src="__PUBLIC__/Back/validate/additional-methods.min.js"></script>
+    <script src="__PUBLIC__/Back/validate/localization/messages_zh.min.js"></script>
+    <script>
+        $(function () {
+            $('#form-goods').validate({
+                rules:{
+                    name:{
+                        remote:{
+                            url:$('#input-name').data('remoteurl'),
+                            data:{
+                              goods_id:$('#input-goods_id').val(),
+                            },
+                        }
+                    }
+                },
+                messages:{
+                    name:{
+                        remote:'商品名已存在',
+                    },
+                },
+                debug: false,
+                submitHandler: function(form) {
+                    form.submit();
+                },
+                errorClass:'text-danger',
+            });
+        });
+    </script>
+    <script>
+        //商品主图的上传
+        $(function() {
+//            alert($('#input-image').data('uploadurl'));
+            $('#input-image').fileupload({
+                // 负责完成动作
+                url: $('#input-image').data('uploadurl'),
+                dataType: 'json',
+                // 上传成功后, 回调的函数,
+                done: function(evt, response) {
+                    var data = response.result;
+                    if(0 === data.error) {
+                        // 将图像反显
+                        $('#image-show').attr('src', $('body').data('public') + '/Thumb/' + data.image_thumb).show();
+                        $('#input-image-value').val(data.image);
+                        $('#input-image_thumb-value').val(data.image_thumb);
+                    }
+                }
+            });
+        })
+    </script>
+    <script>
+        //商品描述图的上传
+        $(function() {
+            $('#input-image-description').fileupload({
+                // 负责完成动作
+                url: $('#input-image-description').data('uploadurl'),
+                dataType: 'json',
+                // 上传成功后, 回调的函数,
+                done: function(evt, response) {
+                    var data = response.result;
+                    if(0 === data.error) {
+                        // 将图像反显
+                        $('#show-description').attr('src', $('body').data('public') + '/Thumb/' + data.image_thumb).show();
+                        $('#input-description-value').val(data.image);
+                        $('#input-description_thumb-value').val(data.image_thumb);
+                    }
+                }
+            });
+        })
+    </script>
+    <script>
+        $(function () {
+            //移除事件绑定
+            $('#table-galleries').delegate('button.remove-button', 'click', function (evt) {
+                var currButton = $(this);
+                // ajax 删除服务器上的记录和图像资源
+                var url = $('#table-galleries').data('removeurl');
+                var data = {
+                    gallery_id: currButton.data('gallery_id'), // undefined / null
+                    image_small: currButton.data('image_thumb')
+                };
+                $.post(url, data, function (response) {
+                    // 删除所在的行
+                    currButton.parents('tr').remove();
+                }, 'json');
+                evt.preventDefault();
+            });
+
+            // 初始化一个变量
+            var galleryIndex = $('#table-galleries>tbody>tr').size();
+            $('#input-galleries').fileupload({
+                url: $('#input-galleries').data('uploadurl'),
+                datatype: 'json',
+                done: function(evt, response)
+                {
+                    var data = response.result;
+                    if (data.error === 0) {
+                        // 没出错完成反显
+                        var html = '<tr id="image-row-' + galleryIndex +
+                                '">' +
+                                '<td class="text-left">' +
+                                '<input type="hidden" name="galleries[' + galleryIndex +
+                                '][image]" value="' + data.image +
+                                '">' +
+                                '<input type="hidden" name="galleries[' + galleryIndex +
+                                '][thumb_path]" value="' + data.image_thumb +
+                                '">' +
+                                '<img src="' + $('body').data('public') + '/Thumb/' + data.image_thumb +
+                                '" width="100" height="90" alt="NO-IMG" title="">' +
+                                '</td>' +
+                                '<td class="text-right">' +
+                                '<input name="galleries[' + galleryIndex +
+                                '][sort_number]" value="0" placeholder="排序" class="form-control" type="text">' +
+                                '</td>' +
+                                '<td class="text-left">' +
+                                '<button type="button" data-toggle="tooltip" title="移除" class="btn btn-danger remove-button" ><i class="fa fa-minus-circle"></i></button>' +
+                                '</td>' +
+                                '</tr>';
+                        $('#table-galleries>tbody').append(html);
+
+                        // 索引递增
+                        ++ galleryIndex;
+                    }
+                }
+            });
+        });
+    </script>
+    <script>
+
+    </script>
+</block>
+

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+		<title>wanbaobao</title>
+		<!--<link rel="stylesheet" type="text/css" href="../css/myreset.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/detail.css"/>-->
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/myreset.css"/>
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/detail.css"/>
+		<!--<script src="../js/jquery.min.js"></script>
+		<script src="../js/tools.js"></script>-->
+		<script src="__PUBLIC__/Home/js/jquery.min.js"></script>
+		<script src="__PUBLIC__/Home/js/tools.js"></script>
+	</head>
+	<body data-goods_id="{$goods_info['goods_id']}">
+		<!--banner-->
+		<div class="detail-img">
+			<!--轮播图元素-->
+			<div class="banner-images" id="img-box">
+				<!--<img src="../img/img_5@2x.png" alt="baobaowan" />
+				<img src="../img/img_2.png" alt="baobaowan" />
+				<img src="../img/img_3.png" alt="baobaowan" />
+				<img src="../img/img_4.png" alt="baobaowan" />
+				<img src="../img/img_4.png" alt="baobaowan" />-->
+				<volist name="goods_galleries" id="gallery">
+					<img src="__PUBLIC__/Thumb/{$gallery['gallery_img']}" alt="baobaowan" />
+				</volist>
+			</div>
+			<!--轮播图控制器-->
+			<div class="pagination-content" id="pagination">
+				<span class="active"></span>
+				<span></span>
+				<span></span>
+				<span></span>
+			</div>
+		</div>
+		
+		<!--title 标题-->
+		<div class="detail-title">
+			<!--<p>WanBaoBao万宝宝甜品系列</p>
+			<p>冰激凌18K白金钻石吊坠</p>
+			<div class="detail-price">¥ 15000.<small>00</small></div>-->
+			<p>{$goods_info['series_title']}</p>
+			<p>{$goods_info['name']}</p>
+			<div class="detail-price">¥ {$goods_info['shop_price']}.<small>00</small></div>
+		</div>
+		
+		<!--cut 分割线-->
+		<div class="cut"></div>
+		
+		<!--introduction 详细介绍-->
+		<div class="introduction">
+			<!--<img src="../img/xiangqingjieshao.png" alt="" />-->
+			<img src="__ROOT__/Upload/{$goods_info['description_img']}" alt="详情图" />
+		</div>
+		
+		<!--placeholder 占位元素-->
+		<div class="placeholder"></div>
+		
+		<!--底部-->
+		<ul class="footer">
+			<!--<li><a href="index.html"></a></li>
+			<li><a href="shop-car.html"></a></li>
+			<li><a href="pay.html">立即购买</a></li>
+			<li><a href="javascript:;" id="add-car">加入购物车</a></li>-->
+			<li><a href="{:U('Shop/index')}"></a></li>
+			<li><a href="{:U('Buy/cart')}"></a></li>
+			<li><a href="javascript:;" id="buy-now">立即购买</a></li>
+			<li><a href="javascript:;" id="add-car">加入购物车</a></li>
+		</ul>
+		
+		<!--加入购物车弹框-->
+		<div class="alert-bg" id="alert-bg">
+			<ul class="alert-content" id="animate-bg">
+				<!--<li>
+					<div>
+						<img src="../img/img_5@2x.png" alt="" />
+					</div>
+					<div>
+						<p>WanBaoBao万宝宝甜品系列冰激凌18K白金钻石吊坠</p>
+						<p>
+							<span>库存10件</span>
+							<span>¥ 15000.<smallest>00</smallest></span>
+						</p>
+					</div>
+				</li>-->
+				<li>
+					<div>
+						<img src="__PUBLIC__/Thumb/{$goods_info['thumb']}" alt="" />
+					</div>
+					<div>
+						<p>{$goods_info['series_title']}{$goods_info['name']}</p>
+						<p>
+							<span>库存{$goods_info['stock']}件</span>
+							<span>¥ {$goods_info['shop_price']}.<smallest>00</smallest></span>
+						</p>
+					</div>
+				</li>
+				<li>
+					<span>购买数量</span>
+					<span>
+						<a href="javascript:;" id="count-shot">-</a>
+						<span id="count">1</span>
+						<a href="javascript:;" id="count-more">+</a>
+					</span>
+				</li>
+				<li><a href="javascript:;" id="add-sure">确定</a></li>
+			</ul>
+		</div>
+		
+		<!--js-->
+		<!--<script src="../js/detail.js"></script>-->
+		
+		<script src="__PUBLIC__/Home/js/detail.js"></script>
+	</body>
+</html>

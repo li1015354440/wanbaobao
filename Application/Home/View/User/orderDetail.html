@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<title>baobaowan</title>
+		<link rel="stylesheet" href="__PUBLIC__/Home/css/myreset.css" />
+		<link rel="stylesheet" href="__PUBLIC__/Home/css/orders-detail.css" />
+		<script type="text/javascript" src="__PUBLIC__/Home/js/jquery.min.js"></script>
+		<script type="text/javascript" src="__PUBLIC__/Home/js/tools.js"></script>
+	</head>
+	<body>
+		<div>
+			<div class="banner">
+				<img src="__PUBLIC__/Home/img/case.png">
+				<span>订单正在处理</span>
+			</div>
+			<div class="personal-information">
+				<img src="__PUBLIC__/Home/img/dizhi.png" />
+				<div>
+					<p><span>{$detail['recept_name']}</span><span>{$detail['tel']}</span></p>
+					<p>{$detail['province']}{$detail['city']}{$detail['detail']}</p>
+				</div>
+			</div>
+			<div class="all-orders">
+				<ul class="orders-list">
+					<volist name="detail['goods_info']" id="good">
+						<li>
+							<img src="__PUBLIC__/Thumb/{$good['thumb']}" alt="" />
+							<div>
+								<p>{$good['series_title']}{$good['name']}</p>
+								<p>￥{$good['shop_price']}</p>
+								<p>x{$good['buy_quantity']}</p>
+							</div>
+						</li>
+					</volist>
+
+					<li>
+						<p class="li-p1"><span>配送信息</span><span>包邮</span></p>
+						<p class="li-p2"><span>备注</span>
+							<span>
+							<if condition="($detail['comment'] eq '')  "> 无<else />{$detail['comment']}</if>
+							</span>
+						</p>
+					</li>
+				</ul>
+			</div>
+			
+			<div class="actual-payment">
+				<p>
+					<sapn class="actual-payment-s1">实付款:</sapn>
+					<span class="actual-payment-s2">¥{$detail['totalPrice']}.<small>00</small></span>
+				</p>
+			</div>
+			
+			<div class="message-list">
+				<ul>
+					<li><span>信息列表</span></li>
+					<li><span>订单号:</span><span>{$detail['order_sn']}</span></li>
+					<li><span>支付方式:</span><span>支付宝</span></li>
+					<li><span>下单时间:</span><span>{:date('Y-m-d H:i:s',$detail['create_at'])}</span></li>
+				</ul>
+			</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,165 @@
+<extend name="Common/back" />
+
+<block name="content">
+    <div id="content">
+        <div class="page-header">
+            <div class="container-fluid">
+                <div class="pull-right">
+                    <button type="submit" form="form-brand" data-toggle="tooltip" title="保存" class="btn btn-primary">
+                        <i class="fa fa-save"></i>
+                    </button>
+                    <a href="{:U('list')}" data-toggle="tooltip" title="取消" class="btn btn-default">
+                        <i class="fa fa-reply"></i>
+                    </a>
+                </div>
+                <h1>商品类型</h1>
+                <ul class="breadcrumb">
+                    <li>
+                        <a href="{:U('Manage/index')}">首页</a>
+                    </li>
+                    <li>
+                        <a href="#">商品类型</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        <i class="fa fa-pencil"></i>
+                        设置商品类型
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    <form action="{:U('set')}" method="post" enctype="multipart/form-data" id="form-type" class="form-horizontal">
+                        <if condition="isset($data['type_id'])">
+                            <input type="hidden" name="type_id" value="{$data['type_id']}" id="input-type_id">
+                        </if>
+                        <ul class="nav nav-tabs">
+                            <li class="active">
+                                <a href="#tab-general" data-toggle="tab">基本信息</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="tab-general">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label" for="input-title">类型标题</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" name="title" value="{$data['title']}" placeholder="类型标题" id="input-title" class="form-control" data-remoteurl="{:U('ajax')}"/>
+                                        <if condition="isset($message['title'])">
+                                            <label for="input-title" class="text-danger">{$message['title']}</label>
+                                        </if>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label" for="input-is_display">是否展示</label>
+                                    <div class="col-sm-10">
+                                        <select name="is_display" id="input-is_display" class="form-control">
+                                            <option value="1" <if condition="$data['is_display'] eq 1">selected</if>>展示</option>
+                                            <option value="0" <if condition="$data['is_display'] eq 0">selected</if>>不展示</option>
+                                        </select>
+                                        <if condition="isset($message['is_display'])">
+                                            <label for="input-is_display" class="text-danger">{$message['is_display']}</label>
+                                        </if>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label" for="input-sort_number">排序字段</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" name="sort_number" value="{$data['sort_number']}" placeholder="排序字段" id="input-sort_number" class="form-control" data-remoteurl="{:U('ajax')}"/>
+                                        <if condition="isset($message['sort_number'])">
+                                            <label for="input-sort_number" class="text-danger">{$message['sort_number']}</label>
+                                        </if>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label" for="input-type_image">描述图</label>
+                                    <div class="col-sm-6">
+                                        <input type="hidden" name="type_image" id="input-type_image-value" value="{$data['type_image']}">
+                                        <input type="hidden" name="type_thumb" id="input-type_thumb-value" value="{$data['type_thumb']}">
+                                        <span class="btn btn-success fileinput-button">
+                                            <i class="glyphicon glyphicon-plus"></i>
+                                            <span>添加商品描述</span>
+                                            <!-- The file input field used as target for the file upload widget -->
+                                            <input id="input-type_image" name="type" type="file" data-uploadurl="{:U('upload')}">
+                                        </span>
+                                        <if condition="isset($message['type_image'])">
+                                            <label for="input-type_image" class="text-danger">{$message['type_image']}</label>
+                                        </if>
+                                    </div>
+                                    <div class="class-sm-4">
+                                        <img src="__PUBLIC__/Thumb/{$data['type_thumb']}" alt="" id="show-type" class="img-thumbnail" style="max-height: 50px; <if condition = "$data['type_thumb'] eq ''">display:none;</if>" />
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</block>
+
+<block name="appendJs">
+    <script src="__PUBLIC__/Back/jqueryFileUpload/js/vendor/jquery.ui.widget.js"></script>
+    <script src="__PUBLIC__/Back/jqueryFileUpload/js/jquery.fileupload.js"></script>
+    <script src="__PUBLIC__/Back/validate/jquery.validate.min.js"></script>
+    <script src="__PUBLIC__/Back/validate/additional-methods.min.js"></script>
+    <script src="__PUBLIC__/Back/validate/localization/messages_zh.min.js"></script>
+    <script>
+        $(function(){
+            $('#form-type').validate({
+                rules:{
+                    title:{
+                        remote:{
+                            url:$('#input-title').data('remoteurl'),
+                            data:{
+                                type_id:$('#input-type_id').val()
+                            },
+                        }
+                    }
+                },
+                messages:{
+                    title:{
+                        remote:'商品名已存在',
+                    },
+                },
+                debug: false,
+                submitHandler: function(form) {
+                    form.submit();
+                },
+                errorClass:'text-danger'
+            });
+        });
+    </script>
+    <script>
+        //商品描述图的上传
+        $(function() {
+            $('#input-type_image').fileupload({
+                // 负责完成动作
+                url: $('#input-type_image').data('uploadurl'),
+                dataType: 'json',
+                // 上传成功后, 回调的函数,
+                done: function(evt, response) {
+                    var data = response.result;
+                    if(0 === data.error) {
+                        // 将图像反显
+                        $('#show-type').attr('src', $('body').data('public') + '/Thumb/' + data.type_thumb).show();
+                        $('#input-type_image-value').val(data.type_image);
+                        $('#input-type_thumb-value').val(data.type_thumb);
+                    }
+                }
+            });
+        })
+    </script>
+    <script>
+
+    </script>
+</block>
+<block name="appendCss">
+    <link href="__PUBLIC__/Back/jqueryFileUpload/css/jquery.fileupload.css" type="text/css" rel="stylesheet" media="screen" />
+    <link href="__PUBLIC__/Back/jqueryFileUpload/css/jquery.fileupload-ui.css" type="text/css" rel="stylesheet" media="screen" />
+
+</block>

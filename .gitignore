@@ -1,0 +1,8 @@
+Application/Runtime/
+Application/Common/Conf/dbServer.php
+.idea/
+Upload/
+Public/Thumb/
+Application/Back/CodeTemplate/
+Application/Back/Controller/CodeController.class.php
+Application/Back/View/Code/

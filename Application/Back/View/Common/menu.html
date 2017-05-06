@@ -1,0 +1,66 @@
+<ul id="menu">
+    <li id="dashboard">
+        <a href="">
+            <i class="fa fa-dashboard fa-fw"></i>
+            <span>管理首页</span>
+        </a>
+    </li>
+    <li id="catalog">
+        <a class="parent">
+            <i class="fa fa-tags fa-fw"></i>
+            <span>商品管理</span>
+        </a>
+        <ul>
+            <li>
+                <a href="{:U('Back/Goods/list')}">商品列表</a>
+            </li>
+            <li class="">
+                <a href="{:U('Back/Goods/set')}">商品添加</a>
+            </li>
+        </ul>
+    </li>
+    <li id="design">
+        <a class="parent">
+            <i class="fa fa-television fa-fw"></i>
+            <span>商品系列</span>
+        </a>
+        <ul>
+            <li>
+                <a href="{:U('Back/Series/list')}">系列展示</a>
+            </li>
+            <li>
+                <a href="{:U('Back/Series/set')}">系列添加</a>
+            </li>
+        </ul>
+    </li>
+
+    <li id="extension">
+        <a class="parent">
+            <i class="fa fa-puzzle-piece fa-fw"></i>
+            <span>商品类型</span>
+        </a>
+        <ul>
+            <li>
+                <a href="{:U('Back/Type/set')}">类型添加</a>
+            </li>
+            <li>
+                <a href="{:U('Back/Type/list')}">类型展示</a>
+            </li>
+        </ul>
+    </li>
+
+    <li id="extension1">
+        <a class="parent">
+            <i class="fa fa-puzzle-piece fa-fw"></i>
+            <span>用户管理</span>
+        </a>
+        <ul>
+            <li>
+                <a href="{:U('Back/Admin/set')}">用户添加</a>
+            </li>
+            <li>
+                <a href="{:U('Back/Admin/list')}">用户列表</a>
+            </li>
+        </ul>
+    </li>
+</ul>

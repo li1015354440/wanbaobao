@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<title>baobaowan</title>
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/myreset.css" />
+		<script src="__PUBLIC__/Home/js/jquery.min.js"></script>
+		<script src="__PUBLIC__/Home/js/tools.js"></script>
+	</head>
+
+	<body>
+		<volist name="orders" id="order">
+			<div order_sn="{$order['order_sn']}" class="order-container">
+				<!--order-num 订单号-->
+				<div class="order-num">
+					订单号: <span class="order_num">{$order['order_sn']}</span>
+					<span>{$order['title']}</span>
+				</div>
+	
+				<!--商品列表-->
+				<div class="all-orders">
+					<ul class="orders-list">
+						<volist name="order['goods_info']" id="goods">
+							<li>
+								<img src="__PUBLIC__/Thumb/{$goods['thumb']}" alt="" />
+								<div>
+									<p>{$goods['name']}</p>
+									<p>¥{$goods['shop_price']}.<small>00</small></p>
+									<p>x{$goods['buy_quantity']}</p>
+								</div>
+							</li>
+						</volist>
+						<li>
+							<p>
+								<span>共{$order['totalNum']}件</span>
+								<span>总金额：</span>
+								<span>¥ {$order['totalPrice']}.<smallest>00</smallest></span>
+							</p>
+							<switch name="order['order_statu_id']" >
+								<case value="1">
+									<div class="color-yellow"><a href="{:U('Buy/confirm',['order_sn'=>$unpay['order_sn']])}" class="pay-order">立即支付</a></div>
+									<div><a href="javascript:;" class="cancer-order">取消订单</a></div>
+								</case>
+								<case value="2">
+								<div><a href="javascript:;" class="cancer-order">取消订单</a></div>
+								</case>
+								<case value="3">
+									<div class="color-yellow"><a href="javascript:;" class="affirm-order">确认收货</a></div>
+									<div><a href="{:U('orderDetail',[orderId=>$unsend['order_sn']])}" class="look-order">查看订单</a></div>
+								</case>
+								<case value="4">
+									<div><a href="javascript:;" class="back-order">退货/换货</a></div>
+								</case>
+							</switch>
+	
+						</li>
+					</ul>
+					<!--cut-->
+					<div class="cut"></div>
+				</div>
+			</div>
+		</volist>
+		<!--js-->
+		<script src="__PUBLIC__/Home/js/orders.js"></script>
+	</body>
+
+</html>

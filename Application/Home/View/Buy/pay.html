@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<title>baobaowan</title>
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/myreset.css" />
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/pay.css" />
+		<script src="__PUBLIC__/Home/js/jquery.min.js"></script>
+		<script src="__PUBLIC__/Home/js/tools.js"></script>
+	</head>
+
+	<body data-from="{$from}">
+		<div class="pay-header">
+			<if condition="isset($recept_default)">
+				<!--有地址显示-->
+				<a href="javascript:;" class="address-msg yesbody" id="yesbody" data-recept_id="{$recept_default['recept_id']}">
+					<p>
+						<span id="old_name">{$recept_default['recept_name']}</span>
+						<span id="old_tel">{$recept_default['tel']}</span>
+					</p>
+					<p id="old_address">{$recept_default['province']}{$recept_default['city']}{$recept_default['country']}{$recept_default['detail']}</p>
+				</a>
+				<!--没有地址显示-->
+				<a href="javascript:;" class="address-msg nobody">
+					<span></span>
+					<span>添加收货人信息</span>
+				</a>
+				<else/>
+				<!--没有地址显示-->
+				<a href="{$addAddress_url}" class="address-msg nobody">
+					<span></span>
+					<span>添加收货人信息</span>
+				</a>
+				<!--有默认地址-->
+				<a href="javascript:;" class="address-msg yesbody" data-recept_id="{$recept['recept_id']}">
+					<p>
+						<span>name</span>
+						<span>tel</span>
+					</p>
+					<p>address</p>
+				</a>
+			</if>
+		</div>
+
+		<!--cut-->
+		<div class="cut"></div>
+
+		<!--商品列表-->
+		<ul class="orders-list" id="orders-list">
+			<volist name="order_list" id="order">
+				<li data-goods_id="{$order['goods_id']}">
+					<img src="__PUBLIC__/Thumb/{$order['thumb']}" alt="" />
+					<div>
+						<p>{$order['series_title']}{$order['name']}</p>
+						<p>¥{$order['shop_price']}</p>
+						<p>x<span id="quantity">{$order['buy_quantity']}</span></p>
+					</div>
+				</li>
+			</volist>
+			<li></li>
+		</ul>
+
+		<!--cut-->
+		<div class="cut"></div>
+
+		<ul class="commodity-msg">
+			<li>
+				<span>商品总价</span>
+				<span>¥{$total_price}</span>
+			</li>
+			<li>
+				<span>配送信息</span>
+				<span>包邮</span>
+			</li>
+			<li>
+				<span>备注</span>
+				<textarea id="commodity-remark">若有尺寸等问题请备注留言，客服会尽快与您联系</textarea>
+			</li>
+		</ul>
+
+		<!--placeholder 占位元素-->
+		<div class="placeholder"></div>
+
+		<div class="footer">
+			<span>实际支付：</span>
+			<span>¥{$total_price}</span>
+			<a href="javascript:;" id="buy_now">立即付款</a>
+		</div>
+
+		<!--地址列表弹框-->
+		<div class="pay_alert" id="pay_alert">
+			<ul class="address-list" id="payer_list">
+				<volist name="recept_list" id="recept">
+					<li data-recept_sn="{$recept['recept_id']}">
+						<span class="check"></span>
+						<div>
+							<p><span id="address_name">{$recept['recept_name']}</span><span id="address_tel">{$recept['tel']}</span></p>
+							<p id="address_detail">{$recept['province']}{$recept['city']}{$recept['country']}{$recept['detail']}</p>
+						</div>
+					</li>
+				</volist>
+			</ul>
+		</div>
+
+		<!--js-->
+
+		<script src="__PUBLIC__/Home/js/pay.js"></script>
+	</body>
+
+</html>

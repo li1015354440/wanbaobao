@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<title>baobaowan</title>
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/myreset.css" />
+		<script src="__PUBLIC__/home/js/jquery.min.js"></script>
+		<script src="__PUBLIC__/Home/js/tools.js"></script>
+	</head>
+
+	<body>
+		<div class="wait-content">
+			<ul class="header">
+				<li><a class="active" href="javascript:;">待付款</a></li>
+				<li><a class="" href="javascript:;">待发货</a></li>
+				<li><a class="" href="javascript:;">待收货</a></li>
+				<li><a class="" href="javascript:;">已完成</a></li>
+			</ul>
+			<div class="wait wait-pay">
+				<!--cut-->
+				<div class="cut"></div>
+				<volist name="unpays" id="unpay" >
+					<div class="list-box">
+						<!--order-num 订单号-->
+						<div class="order-num">
+							订单号: <span class="order_num">{$unpay['order_sn']}</span>
+							<span>{$unpay['title']}</span>
+						</div>
+
+						<!--商品列表-->
+						<div class="all-orders">
+							<ul class="orders-list">
+								<volist name="unpay['goods_info']" id="good">
+									<li>
+										<img src="__PUBLIC__/Thumb/{$good['thumb']}" alt="" />
+										<div>
+											<p>{$good['series_title']}{$good['name']}</p>
+											<p>¥{$good['shop_price']}</p>
+											<p>x{$good['buy_quantity']}</p>
+										</div>
+									</li>
+								</volist>
+								<li>
+									<p>
+										<span>共{$unpay['totalNum']}件</span>
+										<span>总金额：</span>
+										<span>¥ {$unpay['totalPrice']}</span>
+									</p>
+									<!--<div class="color-yellow"><a href="javascript:;" class="pay-order">立即支付</a></div>-->
+									<div class="color-yellow"><a class="pay-order" href="{:U('Buy/confirm',['order_sn'=>$unpay['order_sn']])}" >立即支付</a></div>
+									<div><a href="javascript:;" class="cancel-order">取消订单</a></div>
+								</li>
+							</ul>
+							<!--cut-->
+							<div class="cut"></div>
+						</div>
+					</div>
+				</volist>
+			</div>
+			
+			<div class="wait wait-send" style="display: none;">
+				<!--cut-->
+				<div class="cut"></div>
+				<volist name="unsends" id="unsend">
+					<div class="list-box">
+						<!--order-num 订单号-->
+						<div class="order-num">
+							订单号: <span class="order_num">{$unsend['order_sn']}</span>
+							<span>{$unsend['title']}</span>
+						</div>
+
+						<!--商品列表-->
+						<div class="all-orders">
+							<ul class="orders-list">
+								<volist name="unsend['goods_info'] " id="good">
+									<li>
+										<img src="__PUBLIC__/Thumb/{$good['thumb']}" alt="" />
+										<div>
+											<p>{$good['series_title']}{$good['name']}</p>
+											<p>¥{$good['shop_price']}</p>
+											<p>x{$good['buy_quantity']}</p>
+										</div>
+									</li>
+								</volist>
+								<li>
+									<p>
+										<span>共{$unsend['totalNum']}件</span>
+										<span>总金额：</span>
+										<span>¥ {$unsend['totalPrice']}</span>
+									</p>
+									<div><a href="{:U('orderDetail',[orderId=>$unsend['order_sn']])}" class="look-order">查看详情</a></div>
+								</li>
+							</ul>
+							<!--cut-->
+							<div class="cut"></div>
+						</div>
+					</div>
+				</volist>
+			</div>
+			
+			<div class="wait wait-delivery" style="display: none;">
+				<!--cut-->
+				<div class="cut"></div>
+				<volist name="undeliverys" id="undelivery">
+					<div class="list-box">
+						<!--order-num 订单号-->
+						<div class="order-num">
+							订单号: <span class="order_num">{$undelivery['order_sn']}</span>
+							<span>{$undelivery['title']}</span>
+						</div>
+
+						<!--商品列表-->
+						<div class="all-orders">
+							<ul class="orders-list">
+								<volist name="undelivery['goods_info']"  id="good">
+									<li>
+										<img src="__PUBLIC__/Thumb/{$good['thumb']}" alt="" />
+										<div>
+											<p>{$good['series_title']}{$good['name']}</p>
+											<p>¥{$good['shop_price']}</p>
+											<p>x{$good['buy_quantity']}</p>
+										</div>
+									</li>
+								</volist>
+								<li>
+									<p>
+										<span>共{$undelivery['totalNum']}件</span>
+										<span>总金额：</span>
+										<span>¥ {$undelivery['totalPrice']}</span>
+									</p>
+									<div class="color-yellow"><a href="javascript:;" class="affirm-order">确认收货</a></div>
+									<div><a href="{:U('orderDetail',[orderId=>$unsend['order_sn']])}" class="look-order">查看订单</a></div>
+								</li>
+							</ul>
+							<!--cut-->
+							<div class="cut"></div>
+						</div>
+					</div>
+				</volist>
+			</div>
+			
+			<div class="wait orders-finish" style="display: none;">
+				<!--cut-->
+				<div class="cut"></div>
+				<volist name="finshorders" id="finishorder">
+					<div class="list-box">
+						<!--order-num 订单号-->
+						<div class="order-num">
+							订单号: <span class="order_num">{$finishorder['order_sn']}</span>
+							<span>{$finishorder['title']}</span>
+						</div>
+
+						<!--商品列表-->
+						<div class="all-orders">
+							<ul class="orders-list">
+								<volist name="finishorder['goods_info']" id="good">
+									<li>
+										<img src="__PUBLIC__/Thumb/{$good['thumb']}" alt="" />
+										<div>
+											<p>{$good['series_title']}{$good['name']}</p>
+											<p>¥{$good['shop_price']}</p>
+											<p>x{$good['buy_quantity']}</p>
+										</div>
+									</li>
+								</volist>
+
+
+								<li>
+									<p>
+										<span>共{$finishorder['totalNum']}件</span>
+										<span>总金额：</span>
+										<span>¥ {$finishorder['totalPrice']}</span>
+									</p>
+									<div><a href="javascript:;" class="back-order">退货/换货</a></div>
+								</li>
+							</ul>
+							<!--cut-->
+							<div class="cut"></div>
+						</div>
+					</div>
+				</volist>
+			</div>
+		</div>
+		
+		<!--placeholder 占位元素-->
+		<div class="placeholder"></div>
+		
+		<!--menu-->
+		<ul class="menu" id="menu">
+			<li>
+				<a href="{:U('Shop/index')}">
+					<img src="__PUBLIC__/Home/img/shouye_defauflt@2x.png" alt="" />
+					<span>首页</span>
+				</a>
+			</li>
+			<li>
+				<a href="{:U('Shop/series')}">
+					<img src="__PUBLIC__/Home/img/xilie_defauflt@2x.png" alt="" />
+					<span>系列</span>
+				</a>
+			</li>
+			<li>
+				<a href="{:U('Buy/cart')}">
+					<img src="__PUBLIC__/Home/img/gouwuche_defauflt@2x.png" alt="" />
+					<span>购物车</span>
+				</a>
+			</li>
+			<li>
+				<a href="{:U('User/my')}">
+					<img src="__PUBLIC__/Home/img/wode_pressed@2x.png" alt="" />
+					<span>我的</span>
+				</a>
+			</li>
+		</ul>
+		
+		
+		
+		<!--js-->
+		
+		<script src="__PUBLIC__/Home/js/wait.js"></script>
+	</body>
+
+</html>

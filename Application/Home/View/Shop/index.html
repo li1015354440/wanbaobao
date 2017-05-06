@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<title>baobaowan</title>
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/myreset.css" />
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/index.css" />
+		<script src="__PUBLIC__/Home/js/jquery.min.js"></script>
+		<script src="__PUBLIC__/Home/js/tools.js"></script>
+	</head>
+
+	<body>
+		<!--banner-->
+		<div id="indexa" data-index="{$indexinfo}"></div>
+		<div class="banner">
+			<!--轮播图元素-->
+			<div class="banner-images" id="img-box">
+				<volist name="banner_list" id="banner">
+					<img src="__PUBLIC__/Thumb/{$banner['banner_thumb']}" alt="baobaowan" />
+				</volist>
+			</div>
+			<!--轮播图控制器-->
+			<div class="pagination-content" id="pagination">
+				<span class="active"></span>
+				<span></span>
+				<span></span>
+				<span></span>
+			</div>
+		</div>
+
+		<!--nav-->
+		<div class="nav">
+			<h1 class="nav-h-1">
+				<span>
+					<span class="line-left"></span>
+					CATEGORY
+					<span class="line-right"></span>
+				</span>
+			</h1>
+			<h1 class="nav-h-2">产品类目</h1>
+			<ul>
+				<volist name="type_list" id="type">
+					<li style="background: url('__PUBLIC__/Thumb/{$type['type_thumb']}') no-repeat top; background-size:50%;"><a href="{:U('list',['type_id'=>$type['type_id']])}">{$type['title']}</a></li>
+				</volist>
+			</ul>
+		</div>
+
+		<!--cut-->
+		<div class="cut"></div>
+
+		<!--main-->
+		<div class="main">
+			<h1 class="nav-h-1">
+				<span>
+					<span class="line-left"></span>
+					Hot
+					<span class="line-right"></span>
+				</span>
+			</h1>
+			<h1 class="nav-h-2">热销产品</h1>
+			<ul class="commodity" id="commodity">
+				<volist name="hot_goods_list" id="hot">
+					<li>
+						<a href="{:U('detail',['goods_id'=>$hot['goods_id']])}">
+							<img src="__PUBLIC__/Thumb/{$hot['thumb']}" alt="{$hot['name']}" />
+						</a>
+						<p>{$hot['series_title']}</p>
+						<p>{$hot['name']}</p>
+						<p>￥{$hot['shop_price']}</p>
+					</li>
+				</volist>
+			</ul>
+		</div>
+
+		<!--placeholder 占位元素-->
+		<div class="placeholder"></div>
+
+		<!--menu-->
+		<ul class="menu" id="menu">
+			<li>
+				<a href="{:U('Shop/index')}">
+					<img src="__PUBLIC__/Home/img/shouye_pressed@2x.png" alt="" />
+					<span>首页</span>
+				</a>
+			</li>
+			<li>
+				<a href="{:U('Shop/series')}">
+					<img src="__PUBLIC__/Home/img/xilie_defauflt@2x.png" alt="" />
+					<span>系列</span>
+				</a>
+			</li>
+			<li>
+				<a href="{:U('Buy/cart')}">
+					<img src="__PUBLIC__/Home/img/gouwuche_defauflt@2x.png" alt="" />
+					<span>购物车</span>
+				</a>
+			</li>
+			<li>
+				<a href="{:U('User/my')}">
+					<img src="__PUBLIC__/Home/img/wode_defauflt@2x.png" alt="" />
+					<span>我的</span>
+				</a>
+			</li>
+		</ul>
+
+		<!--js-->
+		
+		<script src="__PUBLIC__/Home/js/index.js"></script>
+	</body>
+
+</html>

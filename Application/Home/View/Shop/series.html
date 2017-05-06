@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<title>baobaowan</title>
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/myreset.css" />
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/series.css"/>
+		<script src="__PUBLIC__/Home/js/jquery.min.js"></script>
+		<script src="__PUBLIC__/Home/js/tools.js"></script>
+	</head>
+
+	<body>
+		<!--系列列表-->
+		<ul class="series-content">
+			<volist name="series_list" id="series">
+				<li>
+					<a href="{:U('Shop/list',['series_id'=>$series['series_id']])}">
+						<img src="__PUBLIC__/Thumb/{$series['series_thumb']}"/>
+					</a>
+				</li>
+			</volist>
+		</ul>
+
+		<!--placeholder 占位元素-->
+		<div class="placeholder"></div>
+
+		<ul class="menu" id="menu">
+			<li>
+				<a href="{:U('Shop/index')}">
+					<img src="__PUBLIC__/Home/img/shouye_defauflt@2x.png" alt="" />
+					<span>首页</span>
+				</a>
+			</li>
+			<li>
+				<a href="{:U('Shop/series')}">
+					<img src="__PUBLIC__/Home/img/xilie_pressed@2x.png" alt="" />
+					<span>系列</span>
+				</a>
+			</li>
+			<li>
+				<a href="{:U('Buy/cart')}">
+					<img src="__PUBLIC__/Home/img/gouwuche_defauflt@2x.png" alt="" />
+					<span>购物车</span>
+				</a>
+			</li>
+			<li>
+				<a href="{:U('User/my')}">
+					<img src="__PUBLIC__/Home/img/wode_defauflt@2x.png" alt="" />
+					<span>我的</span>
+				</a>
+			</li>
+		</ul>
+
+		<!--js-->
+		
+	</body>
+
+</html>
