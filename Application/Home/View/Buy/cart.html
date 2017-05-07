@@ -70,20 +70,20 @@
 			<!--</li>-->
 			<volist name="cart_list" id="cart">
 				<li data-goods_id="{$cart['goods_id']}">
-					<span class="check" check="true"></span>
-					<img src="__PUBLIC__/Thumb/{$cart['thumb']}" alt="" />
-					<div>
-						<p>{$cart['series_title']}{$cart['name']}</p>
-						<div>¥<span class="price">{$cart['shop_price']}.<small>00</small></div>
+						<span class="check" check="true"></span>
+						<img src="__PUBLIC__/Thumb/{$cart['thumb']}" alt="" />
 						<div>
-							<a href="#" class="less">-</a>
-							<span class="counts">{$cart['buy_quantity']}</span>
-							<a href="#" class="add">+</a>
+							<p>{$cart['series_title']}{$cart['name']}</p>
+							<div>¥<span class="price">{$cart['shop_price']}</div>
+							<div>
+								<a href="#" class="less">-</a>
+								<span class="counts">{$cart['buy_quantity']}</span>
+								<a href="#" class="add">+</a>
+							</div>
 						</div>
-					</div>
-					<div class="shop-del">
-						删除
-					</div>
+						<div class="shop-del">
+							删除
+						</div>
 				</li>
 			</volist>
 		</ul>
@@ -98,7 +98,7 @@
 			</div>
 			<div>
 				<span>总计：</span>
-				<span>¥<span id="total">9999.<smallest>00</smallest></span></span>
+				<span>¥<span id="total">9999</span></span>
 				<a href="javascript:;" id="accounts">结算</a>
 			</div>
 		</div>

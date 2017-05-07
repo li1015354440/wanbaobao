@@ -1,4 +1,9 @@
 $(function() {
+//页面刷新
+  	if (location.href.indexOf("?lzx=")<0){
+ 		location.href=location.href+"?lzx="+Math.random();
+ 	}
+
 //计算价格
 	(function() {
 		var n = 3;
@@ -8,12 +13,14 @@ $(function() {
 		totalcount();
 
 //		全选
-		$("#checks").on("touchstart", function() {
+		$("#checks").on("touchstart", function(e) {
+			e.preventDefault();
 			totalcount();
 		})
 
 //		分别计算
-		$("#check-list").children("li").on("touchstart", ".check", function() {
+		$("#check-list").children("li").on("touchstart", ".check", function(e) {
+			e.preventDefault();
 			if($(this).hasClass("active")) {
 				n--;
 			} else {
@@ -35,13 +42,15 @@ $(function() {
 		})
 		
 //		数量更改
-		$("#check-list").children("li").on("touchstart", ".add", function() {
+		$("#check-list").children("li").on("touchstart", ".add", function(e) {
+			e.preventDefault();
 			if($(this).parent().parent().siblings(".check").hasClass("active")) {
 				$(this).siblings("span").text(parseFloat($(this).siblings("span").text()) + 1);
 				count();
 			}
 		})
-		$("#check-list").children("li").on("touchstart", ".less", function() {
+		$("#check-list").children("li").on("touchstart", ".less", function(e) {
+			e.preventDefault();
 			if($(this).parent().parent().siblings(".check").hasClass("active")) {
 				if(parseFloat($(this).siblings("span").text()) <= 2) {
 					$(this).siblings("span").text(1);
@@ -190,18 +199,22 @@ $(function() {
 			})
 		})
 		
-		$("#check-list").on("touchstart",".shop-del",function () {
+		$("#check-list").on("touchstart",".shop-del",function (e) {
+			e.preventDefault();
+			console.log($(this).parent().attr("data-goods_id"))
+			var _this = $(this).closest("li");
 			$.ajax({
 				url:"http://"+location.host+"/wanbaobao/index.php/Home/Buy/cartRemove",
 				type:"post",
 				dataType:"json",
 				data:{"goods_id":$(this).parent().attr("data-goods_id")},
 				success:function (e) {
-					console.log(e);
+					if(e.error=="0"){
+						_this.remove();
+						count();
+					}
 				}
 			})
-			$(this).closest("li").remove();
-			count();
 		})
 	})()
 })

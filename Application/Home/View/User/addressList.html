@@ -16,11 +16,22 @@
 
 	<body>
 		<ul class="address-list">
-			<li>
+			<volist name="adds" id="add">
+				<li>
+					<p><span>{$add['recept_name']}</span><span>{$add['tel']}</span></p>
+					<p>{$add['province']}{$add['city']}{$add['detail']}</p>
+					<div>
+						<a href="{:U('addAddress',['recept_id'=>$add['recept_id'] ,'from'=>'my'] )}">编辑</a>
+						<a href="javascript:;">删除</a>
+					</div>
+				</li>
+
+			</volist>
+			<!--<li>
 				<p><span>赵露露</span><span>15210071540</span></p>
 				<p>河南省安阳市龙安区文明小区12号楼2单元8号</p>
 				<div>
-					<a href="add-address.html">编辑</a>
+					<a href="{:U('editAddress',['recept_id'=>$add['recept_id'] ,'from'=>'my'] )}">编辑</a>
 					<a href="javascript:;">删除</a>
 				</div>
 			</li>
@@ -31,9 +42,11 @@
 					<a href="add-address.html">编辑</a>
 					<a href="javascript:;">删除</a>
 				</div>
-			</li>
+			</li>-->
 		</ul>
 			
+		<!--占位元素-->
+		<div class="placeholder2"></div>
 		<a href="{:U('User/addAddress',['from'=>'my'])}" class="new-address">新增地址</a>
 
 		<!--js-->

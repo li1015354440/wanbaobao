@@ -5,57 +5,7 @@ use Home\DxLogin\SMS;
 use Home\Wxlogin\Wxlogin;
 use Think\Controller;
 class UserController extends Controller {
-    //用户登录
-//  public function loginAction(){        //拉起授权
-//      $wx = new  Wxlogin();
-//      $wx-> Oauth();
-//  }
-//  public function loginCallBackAction(){
-//      $code = $_GET['code'];
-//      $wx = new WxLogin();
-//      $res = $wx->getToken($code);
-//      $access_token = $res['access_token'];
-//      $openid = $res['openid'];
-//      $user_info = $wx->getUserInfo($access_token,$openid);
-//      //实例化模型并查询数据库中是否有数据
-//      $user =M('User');
-//      $data = ['open_id'=>$openid];
-//      $re = $user->where( $data)->find();
-//      if(!$re){
-//          $data['create_at'] =time();
-//          $data['update_at'] =time();
-//          $userid  = $user->add($data);
-//          $user_info['user_id'] =$userid;
-//          session('userinfo',$user_info);
-//      }else{
-//          $user_info['user_id']= $re['user_id'] ;
-//          session('userinfo' ,$user_info);
-//      }
-//      $this->redirect('Home/Shop/index');
-//  }
-
-//	用户登录模拟
-//	public function loginAction(){
-//      if(IS_POST){
-//          $code = I('post.code');
-//          if(isset($code) && $code){
-//              $uid = '4514';
-//              $userinfo = ['name'=>'张三'];
-//              $res = M('User')->where(['open_id'=>'4514'])->find();
-//              if(res){
-//                  session('userinfo',array_merge($res,$userinfo));
-//              }else{
-//                  $user_id = M('User')->add(['open_id'=>$uid]);
-//                  $userinfo['user_id'] = $user_id;
-//                  session('userinfo',$userinfo);
-//              }
-//          }
-//      }else{
-//          $this->display();
-//      }
-//  }
-
-//获取验证吗
+	//获取验证吗
     public function getCodeAction(){
         $tel = I('request.tel','');
         if($tel){
@@ -64,7 +14,7 @@ class UserController extends Controller {
             if($res){
                 $this->ajaxReturn(['error'=>0 ,'message'=>'获取成功']);
             }else{
-                $this->ajaxReturn(['error'=>1 ,'message'=>'获取失败']);
+                $this->ajaxReturn(['error'=>0 ,'message'=>'获取失败']);
             }
         }else{
             $this->ajaxReturn(['error'=>'3','message'=>'电话缺失']);
@@ -81,7 +31,8 @@ class UserController extends Controller {
             if($res){
                 $model = M('user');
                 $re = $model ->where(['tel'=>$tel])->find();
-                if($re) {
+
+                if($re =='') {
                     $data = [
                         'create_at' => time(),
                         'update_at' => time(),
@@ -93,7 +44,7 @@ class UserController extends Controller {
                 }else{
                     session('userinfo',$re);
                 }
-                $this->ajaxReturn(['error'=>0 ,'message'=>'验证成功','data'=>session('userinfo')] );
+                $this->ajaxReturn(['error'=>0 ,'message'=>'验证成功', 'data'=>session('userinfo')]);
             }else{
                 $this->ajaxReturn(['error'=>1 ,'message'=>'验证失败','data'=>'验证码错误'] );
             }
@@ -102,21 +53,8 @@ class UserController extends Controller {
 
         }
     }
-    public function  loginAction(){
-        $this->display();
-    }
+  
 
-    //显示用户信息
-    public function myAction(){
-//      if($_SESSION['userinfo'])
-//      {
-//          $userInfo = session('userinfo');
-            $this->assign('userInfo',$userInfo);
-            $this->display();
-//      }else{
-//          $this->loginAction();
-//      }
-    }
     //添加地址
     public function addAddressAction(){
         if(IS_POST){
@@ -174,13 +112,53 @@ class UserController extends Controller {
             $this->assign('from',I('get.from'));
             $this->assign('goods_id',I('get.goods_id',''));
             $this->assign('quantity',I('get.quantity',''));
+            $receptId = I('request.recept_id','');
+            if($receptId !='') {
+                $where = ['recept.recept_id' => $receptId];
+                //实例化模型
+                $add = M('Recept');
+                $recept = $add
+                    ->alias('recept')
+                    ->field('recept.*, province.title province ,city.title city ,country.title country')
+                    ->join('wb_region province on province.region_id =recept.province_id')
+                    ->join('wb_region city on city.region_id = recept.city_id')
+                    ->join('wb_region country on country.region_id = recept.country_id')
+                    ->where($where)
+                    ->find();
+                $this->assign('recept', $recept);
+            }
             $this->display();
         }
     }
     //修改地址
-    public function updateAddressAction(){
-
+	public function editAddressAction(){
+        $receptId = I('request.recept_id','');
+        if($receptId !=''){
+            $where=['recept.recept_id'=>$receptId];
+            //实例化模型
+            $add = M('Recept');
+            $recept = $add
+                ->alias('recept')
+                ->field('recept.*, province.title province ,city.title city ,country.title country')
+                ->join('wb_region province on province.region_id =recept.province_id')
+                ->join('wb_region city on city.region_id = recept.city_id')
+                ->join('wb_region country on country.region_id = recept.country_id')
+                ->where($where)
+                ->find();
+            $this->assign('recept',$recept);
+            $province = M('Region')
+                ->field('region_id,title')
+                ->where(['level'=>1])
+                ->select();
+            $this->assign('province_list',$province);
+            $this->assign('from',I('get.from'));
+       
+            $this->display();
+        }else{
+            $this->display('User/addressList');
+        }
     }
+    
     //获取地区的接口
     public function getRegionAction(){
         $region_id = I('request.region_id','');
@@ -196,14 +174,10 @@ class UserController extends Controller {
         }
         $this->ajaxReturn(['error'=>0,'message'=>'请求成功','data'=>$city]);
     }
-    //显示全部地址
+//  显示全部地址
     public function addressListAction(){
-
-//        $this->display();
-//        die;
-        $userid = I('request.userid','5');
-
-        if($userid !='')
+        $userid = $_SESSION['userinfo']['user_id'];
+        if($userid)
         {
             $where =[
                 'wb_recept.user_id' =>$userid
@@ -220,7 +194,7 @@ class UserController extends Controller {
             $this->assign('adds',$adds);
             $this->display();
         }else{
-            redirect('Home/User/login');
+            redirect('login');
         }
 
     }
@@ -445,79 +419,7 @@ class UserController extends Controller {
             redirect('Home/User/login');
         }
     }
-//  显示订单详情2
-//   public function orderDetailAction(){
-//      //接收订单的id
-//      $id = I('request.orderId',3);
-//      if($id !=''){
-//          //实例化模型
-//          $order = M('Order');
-//          $where = ['order_id'=>$id];
-//          $res =  $order
-//              ->field('wb_order.order_sn,wb_order.goods_info,wb_order.create_at ,wb_order.comment,recept.detail ,recept.tel,recept.recept_name,city.title city,province.title province')
-//              ->join('wb_recept as recept on recept.recept_id = wb_order.recept_id')
-//              ->join('wb_region as province on recept.province_id = province.region_id')
-//              ->join('wb_region as city on recept.city_id = city.region_id')
-//              ->where($where)
-//              ->find();
-//          $goods_info = unserialize($res['goods_info']);
-//          $res['goods_info'] = $goods_info;
-//          $totalNum =0;
-//          $totalPrice = 0;
-//          foreach ($res['goods_info'] as $v) {
-//              $totalNum += $v['buy_quantity'];
-//              $totalPrice +=  $v['buy_quantity']* $v['shop_price'];
-//          }
-//          $res[totalNum]=$totalNum;
-//          $res[totalPrice] = $totalPrice;
-//
-//          $this->assign('detail',$res);
-//          $this->display();
-//      }else{
-//
-//      }
-//  }
-//  //获取验证吗
-//  public function getCodeAction(){
-//      $tel = I('request.tel','');
-//      if($tel){
-//          $sms = new SMS();
-//         $res = $sms->GetCode($tel);
-//          if($res){
-//              echo '发送成功';
-//          }else{
-//              echo '发送失败';
-//          }
-//      }else{
-//          $this->ajaxReturn(['error'=>'3','message'=>'电话缺失']);
-//      }
-//  }
-//  //验证登陆
-//  public function checkCodeAction(){
-//      $tel =I('request.tel','');
-//      $code = I('request.code','');
-//      if($tel && $code){
-//          //实例化模型
-//          $sms = new SMS();
-//          $res = $sms->VerifyCode($tel,$code);
-//          if($res){
-//              $model = M('user');
-//              $re = $model ->where(['tel'=>$tel])->find();
-//              if($re) {
-//                  $data = [
-//                      'create_at' => time(),
-//                      'update_at' => time(),
-//                      'tel' => $tel
-//                  ];
-//                  $userid = $model->add($data);
-//                  $data['user_id'] = $userid;
-//                  session('userinfo', $data);
-//              }else{
-//                  session('userinfo',$re);
-//              }
-//          }
-//      }
-//  }
+
     //整合订单的代码
     public function waitAction(){
         $userId =$_SESSION['userinfo']['user_id'] =5;
@@ -559,6 +461,7 @@ class UserController extends Controller {
         $this->redirect('login') ;
         }
     }
+    
      //取消订单
     public function deleteOrderAction(){
         //接收订单
@@ -582,9 +485,8 @@ class UserController extends Controller {
             ];
             $this->ajaxReturn(['error'=>1,'message'=>'未登录']);
         }
-
-
     }
+    
     //确认收货
     public function confirmOrderAction(){
         //获取订单id
@@ -606,18 +508,37 @@ class UserController extends Controller {
         }else{
             $this->ajaxReturn(['error'=>1,'message'=>'未登陆','url'=>'User/login']);
         }
-
     }
+    
     //退出登陆
     public function outUserAction(){
         $_SESSION['userinfo']='';
         $res = $_SESSION['userinfo'];
-        if($res !=''){
+        if($res ==''){
             $this->ajaxReturn(['error'=>0,'message'=>'退出登陆成功']);
         }else{
             $this->ajaxReturn(['error'=>200,'message'=>'退出登陆失败']);
         }
     }
+    
+//  判断是否登录
+    public function mAction(){
+        if($_SESSION['userinfo'] !='')
+        {
+            $userInfo = session('userinfo');
+            $this->ajaxReturn(['error'=>0,'message'=>'登陆成功状态' ,'data'=>$userInfo]);
+        }else{
+            $data= [
+                'statu'=>'未登录状态',
+            ];
+            $this->ajaxReturn(['error'=>1,'message'=>'未登陆' ,'data'=>$data]);
+        }
+    }
+    
+    public function myAction(){
+        $this->display();
+    }
+    
     //订单详情业
     public function orderDetailAction(){
 

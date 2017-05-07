@@ -47,7 +47,7 @@ class Buycontroller extends Controller{
     }
     //移除购物车中的商品
     public function cartRemoveAction(){
-        $goods_id = I('.goods_id','');
+        $goods_id = I('request.goods_id','');
         if($goods_id == ''){
             $this->ajaxReturn(['error'=>2,'message'=>'请求参数不完整']);
         }

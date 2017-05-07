@@ -57,16 +57,16 @@ $(function (){
 											'<p>请选择县/镇</p>\
 											<ul id="countrys" >'+_html+'</ul>'
 										)
-										$("#id_content").attr({
-											"province_id":province_id,
-											"city_id":city_id,
-											"country_id":country_id
-										})
 										$("#countrys").on("click","li", function () {
 											$(this).addClass("li-active").siblings().removeClass("li-active");
 											country_id = $(this).attr("data-region_id");
 											$("#alert-bg3").hide();
 											$("#city").text(city+' '+city2+' '+this.innerHTML); 
+											$("#id_content").attr({
+												"province_id":province_id,
+												"city_id":city_id,
+												"country_id":country_id
+											})
 										})
 									}
 								}
@@ -101,9 +101,9 @@ $(function (){
 				data: {
 					"goods_id":$("body").attr('data-goods_id'),
 					"quantity":$("body").attr("data-quantity"),
-					"province_id":province_id,
-					"city_id":city_id,
-					"country_id":country_id,
+					"province_id":$("#id_content").attr("province_id"),
+					"city_id":$("#id_content").attr("city_id"),
+					"country_id":$("#id_content").attr("country_id"),
 					"detail":$("#detail-address").val(),
 					"tel":$("#delivery-phone").val(),
 					"recept_name":$("#delivery-man").val(),

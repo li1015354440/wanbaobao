@@ -98,6 +98,13 @@ small {
     width: 100%;
     height: .49rem;
 }
+.placeholder2 {
+	position: fixed;
+	bottom:0;
+	width: 100%;
+	height: 1.2rem;
+	background: #fff;
+}
 /*商品列表*/
 .main {
   width: 100%;

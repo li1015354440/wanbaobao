@@ -18,44 +18,31 @@
 		<script src="__PUBLIC__/Home/js/tools.js"></script>
 	</head>
 
-	<body data-from="{$from}" data-goods_id="{$goods_id}" data-quantity="{$quantity}" data-recept_id="{$recept['recept_id']}">
+	<body data-from="{$from}" data-goods_id="{$goods_id} " data-recept_id="{$recept['recept_id']}">
 		<!--收货地址-->
 		<form action="" method="post">
 			<ul class="delivery-address">
-				<!--<li>
+				<li>
 					<span>收货人</span>
-					<input type="text" name="" placeholder="收货人" id="delivery-man" />
+					<input type="text" name="" placeholder="收货人" value="{$recept['recept_name']}" id="delivery-man" />
 				</li>
 				<li>
 					<span>手机号</span>
-					<input type="text" name="" placeholder="收货人手机号码" id="delivery-phone" />
-				</li>-->
-				<li>
-			        <span>收货人</span>
-			        <input type="" placeholder="收货人" id="delivery-man" name="name"  value="{$recept['recept_name']}" />
-			      </li>
-			      <li>
-			        <span>手机号</span>
-			        <input type="text" placeholder="收货人手机号码" id="delivery-phone" name="tel" value="{$recept['tel']}"/>
-			      </li>
-				<li id="change-address">
-					<!--<span>选择省市</span>
-					<div name="" id="city"></div>
-					<input type="hidden" name="" value="" id="id_content"/>-->
-					<span>选择省市</span>
-			        <div name="" id="city">{$recept['province']}{$recept['city']}{$recept['country']}</div>
-			        <input type="hidden" name="" value="" id="id_content" province_id="{$recept['province_id']}" city_id="{$recept['city_id']}" country_id="{$recept['country_id']}">
+					<input type="text" name="" placeholder="收货人手机号码" id="delivery-phone"  value="{$recept['tel']}" />
 				</li>
-				<!--<li>
-					<textarea name="" id="detail-address">请填写详细地址，例如街道等</textarea>
-				</li>-->
+				<li id="change-address">
+					<span>选择省市</span>
+					<div name="" id="city">{$recept['province']}{$recept['city']}{$recept['country']}</div>
+					<input type="hidden" name="" value="" id="id_content" province_id="{$recept['province_id']}" city_id="{$recept['city_id']}" country_id="{$recept['country_id']}">  <!-- 存城市id -->
+				</li>
 				<li>
-        			<textarea id="detail-address">{$recept['detail']}</textarea>
-        		</li>
+					<textarea name="" id="detail-address">{$recept['detail']}</textarea>
+				</li>
 			</ul>
 			
 			<div class="save"><a href="javascript:;" id="save">保存</a></div>
 		</form>
+		
 		
 		<!--弹框-->
 		<div class="alert-bg" id="alert-bg">

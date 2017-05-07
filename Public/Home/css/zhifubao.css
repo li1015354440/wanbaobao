@@ -1,6 +1,5 @@
 body{
 	width: 100%;
-	height: 100%;
 	background-color: #fff;
 }
 .img_zhishi{
@@ -35,10 +34,12 @@ body{
 	width: 100%;
 	line-height: 0.35rem;
 	height: 0.35rem;
-	padding: 0 0.275rem;
 }
 .procedure p span{
 	float: left;
+}
+.procedure p span:first-child{
+	
 }
 .procedure p span:first-child{
 	display: block;
@@ -46,6 +47,7 @@ body{
 	background-size: 100%;
 	width: 0.35rem;
 	height: 0.35rem;
+	margin-left: 0.25rem;
 }
 .procedure p span:nth-child(2){
 	display: block;
