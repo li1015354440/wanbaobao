@@ -1,3 +1,4 @@
+
 body{
 	width: 100%;
 	background-color: #fff;
@@ -30,18 +31,19 @@ body{
 .procedure{
 	margin-top: 1.85rem;
 }
-.procedure p{
+.procedure p:first-child{
 	width: 100%;
 	line-height: 0.35rem;
 	height: 0.35rem;
+	font-size: 0.14rem;
 }
-.procedure p span{
+.procedure p:first-child span{
 	float: left;
 }
-.procedure p span:first-child{
+.procedure p:first-child span:first-child{
 	
 }
-.procedure p span:first-child{
+.procedure p:first-child span:first-child{
 	display: block;
 	background: url(../img/gengduo.png);
 	background-size: 100%;
@@ -49,7 +51,7 @@ body{
 	height: 0.35rem;
 	margin-left: 0.25rem;
 }
-.procedure p span:nth-child(2){
+.procedure p:first-child span:nth-child(2){
 	display: block;
 	background: url(../img/jiantou.png);
 	background-size: 100%;
@@ -58,7 +60,7 @@ body{
     margin-left: 0.375rem;
     margin-top: 0.12rem;
 }
-.procedure p span:nth-child(3){
+.procedure p:first-child span:nth-child(3){
 	display: block;
 	background: url(../img/liulanqi.png);
 	background-size: 100%;
@@ -66,7 +68,7 @@ body{
 	height: 0.35rem;
 	margin-left: 0.375rem;
 }
-.procedure p span:nth-child(4){
+.procedure p:first-child span:nth-child(4){
 	display: block;
 	background: url(../img/jiantou.png);
 	background-size: 100%;
@@ -75,11 +77,34 @@ body{
     margin-left: 0.375rem;
     margin-top: 0.12rem;
 }
-.procedure p span:nth-child(5){
+.procedure p:first-child span:nth-child(5){
 	display: block;
 	background: url(../img/zhifubao.png);
 	background-size: 100%;
 	width: 0.35rem;
 	height: 0.35rem;
 	margin-left: 0.375rem;
+}
+
+
+.procedure p:nth-child(2){
+	height: 0.2rem;
+	font-size: 0.14rem;
+	color: #666;
+	margin-top: 0.18rem;
+}
+.procedure p:nth-child(2) span:first-child{
+	display: block;
+	float: left;
+	margin-left: 0.28rem;
+}
+.procedure p:nth-child(2) span:nth-child(2){
+	float: left;
+	display: block;
+	margin-left: 0.8rem;
+}
+.procedure p:nth-child(2) span:nth-child(3){
+	float: left;
+	display: block;
+	margin-left: 0.7rem;
 }

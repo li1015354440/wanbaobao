@@ -1,23 +1,31 @@
 $(function () {
+//	var url="http://"+location.host+"/";
+	var url="http://"+location.host+"/wanbaobao/";
+	
+	var flag=0;
 //	判断是否登录
 	$.ajax({
-		url: "http://"+location.host+"/wanbaobao/index.php/Home/User/m",
+		url: url+"index.php/Home/User/m",
 		type: "post",
 		dataType:"json",
 		success: function (e) {
 			if(e.error=="0"){
+				flag=1;
 				$("#login").text(e.data.tel);
 				$("#iflogin").show();
 			}else if(e.error=="1") {
 				$("#login").text("请点击登录");
 				$("#iflogin").hide();
+				flag=0;
 			}
 		}
 	})
 	
 //	点击登录
 	$(".login").on("click",function () {
-		window.location.href="login.html";
+		if(flag==0){
+			window.location.href="login.html";
+		}
 	})
 	
 //	弹框
@@ -34,11 +42,13 @@ $(function () {
 //	退出登录
 	$("#iflogin").on("click",function () {
 		$.ajax({
-			url:"http://"+location.host+"/wanbaobao/index.php/Home/User/outUser",
+			url:url+"index.php/Home/User/outUser",
 			type: "post",
 			dataType:"json",
 			success: function (e) {
-				window.location.href="../Shop/index.html";
+				if(e.error==0){
+					window.location.href="../Shop/index.html";
+				}
 			}
 		})
 	})

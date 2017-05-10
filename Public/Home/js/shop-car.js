@@ -1,9 +1,11 @@
 $(function() {
-//页面刷新
-  	if (location.href.indexOf("?lzx=")<0){
- 		location.href=location.href+"?lzx="+Math.random();
- 	}
-
+//	var url="http://"+location.host+"/";
+	var url="http://"+location.host+"/wanbaobao/";
+//	判断是否有商品
+	if($("#check-list").children().length==0){
+		$("#check-list").html("<h1>购物车空空如也</h1>");
+	}
+	
 //计算价格
 	(function() {
 		var n = 3;
@@ -33,12 +35,12 @@ $(function() {
 			}
 			if($(this).attr("check") == "true") {
 				$(this).attr("check", "false").toggleClass("active");
-				price -= parseFloat($(this).siblings("div").find(".price").text()) * parseFloat($(this).siblings("div").find(".counts").text());
+				price -= parseFloat($(this).siblings("div").find(".price").text()) * parseFloat($(this).siblings("div").find(".counts").text())*100;
 			} else {
 				$(this).attr("check", "true").toggleClass("active");
-				price += parseFloat($(this).siblings("div").find(".price").text()) * parseFloat($(this).siblings("div").find(".counts").text());
+				price += parseFloat($(this).siblings("div").find(".price").text()) * parseFloat($(this).siblings("div").find(".counts").text())*100;
 			}
-			$("#total").html(price + ".<smallest>00</smallest>");
+			$("#total").html(parseFloat(price)/100);
 		})
 		
 //		数量更改
@@ -75,20 +77,20 @@ $(function() {
 					$("#checks>span:eq(0)").addClass("active");
 					$(".check").attr("check", "true");
 					$(".check").addClass("active");
-					price += parseFloat($(".price").eq(i).html()) * parseFloat($(".counts").eq(i).html()); //算出每件商品的总价;
+					price += parseFloat($(".price").eq(i).html()) * parseFloat($(".counts").eq(i).html()*100); //算出每件商品的总价;
 				}
 			}
-			$("#total").html(price + ".<smallest>00</smallest>");
+			$("#total").html(parseFloat(price)/100);
 		}
 //			数量更改时计算价格
 		function count() {
 			price = 0;
 			for(var i = 0; i < $(".check").length; i++) {
 				if($(".check").eq(i).hasClass("active")){
-					price += parseFloat($(".price").eq(i).html()) * parseFloat($(".counts").eq(i).html()); //算出每件商品的总价;
+					price += parseFloat($(".price").eq(i).html()) * parseFloat($(".counts").eq(i).html())*100; //算出每件商品的总价;
 				}
 			}
-			$("#total").html(price + ".<smallest>00</smallest>");
+			$("#total").html(parseFloat(price)/100);
 		}
 
 //			结算
@@ -102,7 +104,7 @@ $(function() {
 				}
 			}
 			$.ajax({
-				url: "http://"+location.host+"/wanbaobao/index.php/Home/Buy/checkGoods",
+				url:url+"index.php/Home/Buy/checkGoods",
 				type: "post",
 				dataType: "json",
 				data: {
@@ -112,7 +114,7 @@ $(function() {
 					if(e.error == "0") {
 						for(var i = 0; i < arr.length; i++) {
 							$.ajax({
-								url: "http://"+location.host+"/wanbaobao/index.php/Home/Buy/cartUpdate",
+								url:url+"index.php/Home/Buy/cartUpdate",
 								type: "post",
 								dataType: "json",
 								data: {
@@ -204,7 +206,7 @@ $(function() {
 			console.log($(this).parent().attr("data-goods_id"))
 			var _this = $(this).closest("li");
 			$.ajax({
-				url:"http://"+location.host+"/wanbaobao/index.php/Home/Buy/cartRemove",
+				url:url+"index.php/Home/Buy/cartRemove",
 				type:"post",
 				dataType:"json",
 				data:{"goods_id":$(this).parent().attr("data-goods_id")},

@@ -9,13 +9,20 @@ class UserController extends Controller {
     public function getCodeAction(){
         $tel = I('request.tel','');
         if($tel){
-            $sms = new SMS();
-           $res = $sms->GetCode($tel);
-            if($res){
-                $this->ajaxReturn(['error'=>0 ,'message'=>'获取成功']);
+
+            if(time()-session('time') >60 ){
+                $sms = new SMS();
+                $res = $sms->GetCode($tel);
+                session('time',time());
+                if($res){
+                    $this->ajaxReturn(['error'=>0 ,'message'=>'获取成功']);
+                }else{
+                    $this->ajaxReturn(['error'=>1,'message'=>'获取失败']);
+                }
             }else{
-                $this->ajaxReturn(['error'=>0 ,'message'=>'获取失败']);
+                $this->ajaxReturn(['error'=>2 ,'message'=>'重复获取' ,'data'=>['mes'=>'请在60s之后重新获取']]);
             }
+
         }else{
             $this->ajaxReturn(['error'=>'3','message'=>'电话缺失']);
         }
@@ -156,6 +163,19 @@ class UserController extends Controller {
             $this->display();
         }else{
             $this->display('User/addressList');
+        }
+    }
+    
+//  删除地址
+    public function deleteAddressAction(){
+        $recept_id = I('request.recept_id');
+        if($recept_id){
+            //实例化模型recept
+            $recept = M('Recept');
+            $res = $recept->where(['recept_id'=>$recept_id])->delete();
+            $this->redirect('addressList');
+        }else{
+            $this->redirect('addressList');
         }
     }
     

@@ -7,54 +7,39 @@
 		<meta name="keywords" content="" />
 		<meta name="format-detection" content="telephone=no" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-		<title>baobaowan</title>
-		<!--<link rel="stylesheet" type="text/css" href="../css/myreset.css" />
-		<link rel="stylesheet" type="text/css" href="../css/add-address.css"/>-->
+		<title>BaoBaoWan</title>
 		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/myreset.css" />
 		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/add-address.css"/>
-		<!--<script src="../js/jquery.min.js"></script>
-		<script src="../js/tools.js"></script>-->
 		<script src="__PUBLIC__/Home/js/jquery.min.js"></script>
+		<script src="__PUBLIC__/Home/js/jquery.validate.js"></script>
 		<script src="__PUBLIC__/Home/js/tools.js"></script>
 	</head>
 
 	<body data-from="{$from}" data-goods_id="{$goods_id}" data-quantity="{$quantity}" data-recept_id="{$recept['recept_id']}">
 		<!--收货地址-->
-		<form action="" method="post">
+		<form action="" method="post" id="jsForm">
 			<ul class="delivery-address">
-				<!--<li>
-					<span>收货人</span>
-					<input type="text" name="" placeholder="收货人" id="delivery-man" />
-				</li>
-				<li>
-					<span>手机号</span>
-					<input type="text" name="" placeholder="收货人手机号码" id="delivery-phone" />
-				</li>-->
 				<li>
 			        <span>收货人</span>
-			        <input type="" placeholder="收货人" id="delivery-man" name="name"  value="{$recept['recept_name']}" />
+			        <input type="text" placeholder="收货人" id="delivery-man" name="name"  value="{$recept['recept_name']}" required data-msg-required="请输入收货人" maxlength="12" data-msg-maxlength="最多输入12个字符" />
 			      </li>
 			      <li>
 			        <span>手机号</span>
-			        <input type="text" placeholder="收货人手机号码" id="delivery-phone" name="tel" value="{$recept['tel']}"/>
+			        <input type="text" placeholder="收货人联系电话" id="delivery-phone" name="tel" value="{$recept['tel']}" required data-rule-tm="true" data-msg-required="请输入收货人联系电话" />
 			      </li>
 				<li id="change-address">
-					<!--<span>选择省市</span>
-					<div name="" id="city"></div>
-					<input type="hidden" name="" value="" id="id_content"/>-->
 					<span>选择省市</span>
-			        <div name="" id="city">{$recept['province']}{$recept['city']}{$recept['country']}</div>
+			        <input type="text"  name="city" id="city" required data-msg-required="请选择地址" placeholder="请选择地址" value="{$recept['province']}{$recept['city']}{$recept['country']}" />
 			        <input type="hidden" name="" value="" id="id_content" province_id="{$recept['province_id']}" city_id="{$recept['city_id']}" country_id="{$recept['country_id']}">
 				</li>
-				<!--<li>
-					<textarea name="" id="detail-address">请填写详细地址，例如街道等</textarea>
-				</li>-->
-				<li>
-        			<textarea id="detail-address">{$recept['detail']}</textarea>
+				<li id="last-li">
+        			<textarea id="detail-address"><if condition="$recept['detail'] eq ''">请填写详细地址，例如街道等<else/>{$recept['detail']}</if></textarea>
+        			<label id="area"></label>
         		</li>
 			</ul>
 			
 			<div class="save"><a href="javascript:;" id="save">保存</a></div>
+			<input type="submit" class="sub" id="sub" />
 		</form>
 		
 		<!--弹框-->
@@ -88,7 +73,6 @@
 		</div>
 
 		<!--js-->
-	<!--	<script src="../js/add-address.js"></script>-->
 		<script src="__PUBLIC__/Home/js/add-address.js"></script>
 	</body>
 

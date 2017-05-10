@@ -6,6 +6,11 @@ body {
   text-align: left;
   overflow: hidden;
 }
+.shop-calr-list > h1 {
+  text-align: center;
+  margin-top: 1rem;
+  font-size: .14rem;
+}
 .shop-calr-list li {
   position: relative;
   margin-top: .05rem;

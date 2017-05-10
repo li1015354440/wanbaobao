@@ -1,4 +1,6 @@
-$(document).ready(function(){
+$(function(){
+//	var url="http://"+location.host+"/";
+	var url="http://"+location.host+"/wanbaobao/";
 	$(".header>li").on("click",function (){
 		var index = $(this).index()+1;
 		show(index);
@@ -30,7 +32,7 @@ $(document).ready(function(){
 	$(".wait-pay").on("click",".cancel-order",function () {
 		var index = $(this).parents(".list-box").index()-1;
 		$.ajax({
-			url:"http://"+location.host+"/wanbaobao/index.php/Home/User/deleteOrder",
+			url:url+"index.php/Home/User/deleteOrder",
 			type:"post",
 			dataType:"json",
 			data:{"ordersn":$(".wait-pay").find(".list-box").eq(index).find(".order_num").text()},
@@ -45,7 +47,7 @@ $(document).ready(function(){
 		var index = $(this).parents(".list-box").index()-1;
 		console.log($(".list-box").eq(index).find(".order_num").text())
 		$.ajax({
-			url:"http://"+location.host+"/wanbaobao/index.php/Home/User/confirmOrder",
+			url:url+"index.php/Home/User/confirmOrder",
 			type:"post",
 			dataType:"json",
 			data:{"ordersn":$(".wait-delivery").find(".list-box").eq(index).find(".order_num").text()},
@@ -53,6 +55,11 @@ $(document).ready(function(){
 				$(".wait-delivery").find(".list-box").eq(index).remove();
 			}
 		})
+	})
+	
+//	退换货
+	$(".back-order").on("click",function () {
+		alert("请联系客服");
 	})
 })
 

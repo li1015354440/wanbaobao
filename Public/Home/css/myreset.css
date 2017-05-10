@@ -70,11 +70,14 @@ html {
 	/*font-family: "微软雅黑";*/
 	/*font-family: "dongqing";*/
 }
-smallest {
-	font-size: .14rem;
+label {
+    display: block;
+    margin-left: .05rem;
+    color: red;
+    font-size: .1rem;
 }
-small {
-	font-size: .12rem;
+button {
+	outline: none;
 }
 :focus {
     outline: 1;
@@ -114,7 +117,8 @@ small {
   margin-top: .2rem;
   padding: 0 .12rem;
   background: #fff;
-  font-size: .14rem;
+  /*font-size: .14rem;*/
+	font-size: .13rem;
 }
 .main .commodity > li {
   float: left;
@@ -139,7 +143,8 @@ small {
 }
 .main .commodity > li > p:nth-child(2) {
   color: #999;
-  font-size: .12rem;
+  /*font-size: .12rem;*/
+ 	font-size: .11rem;
   margin-top: .12rem;
 }
 .main .commodity > li > p:nth-child(3) {

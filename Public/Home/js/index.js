@@ -1,20 +1,12 @@
 $(function () {
-//	轮播图
+//	var url="http://"+location.host+"/";
+	var url="http://"+location.host+"/wanbaobao/";
 	go();
 	
-////	列表
-//	(function () {
-//		var _html = "";
-//		for(var i=0; i<10; i++){
-//			_html += '<li>\
-//					<a href="../html/detail.html">\
-//						<img src="../img/img_5@2x.png" alt="别针18K钻石吊坠项链" />\
-//					</a>\
-//					<p>WanBaoBao万宝宝甜品系列</p>\
-//					<p>冰激凌18K白金钻石吊坠</p>\
-//					<p>¥15000.00</p>\
-//				</li>';
-//		}
-//		$("#commodity").html(_html);
-//	})()
+	//首页
+	$("#img-box").children("img").on("click",function () {
+		if($(this).index()==0){
+			window.location.href=url+"index.php/Home/Shop/imgDetail.html";
+		}
+	})
 })

@@ -1,4 +1,6 @@
 $(function () {
+//	var url="http://"+location.host+"/";
+	var url="http://"+location.host+"/wanbaobao/";
 //	轮播图
 	go();
 	(function () {
@@ -55,19 +57,30 @@ $(function () {
 		$("#add-sure").on("click",function () {
 			if(flag==0){
 				$.ajax({
-					url:"http://"+location.host+"/wanbaobao/index.php/Home/Buy/cartadd",
+					url:url+"index.php/Home/Buy/cartadd",
 					type:"post",
 					datatype: "json",
 					data: {"goods_id":$("body").attr("data-goods_id"),"quantity":count},
 					success: function (e) {
-						$("#count").text(0);
+						$("#count").text(1);
 						if(e.error == 1){
-							window.location.href="/wanbaobao/index.php/Home/User/login.html";
+							window.location.href=url+"/index.php/Home/User/login.html";
 						}
 					}
 				});
 			}else{
-				window.location.href="http://localhost/wanbaobao/index.php/Home/Buy/pay/goods_id/"+$("body").attr("data-goods_id")+"/quantity/"+count+"/from/buy_now";
+				$.ajax({
+					url: url+"index.php/Home/User/m",
+					type: "post",
+					dataType:"json",
+					success: function (e) {
+						if(e.error=="0"){
+							window.location.href=url+"/index.php/Home/Buy/pay/goods_id/"+$("body").attr("data-goods_id")+"/quantity/"+count+"/from/buy_now";
+						}else if(e.error=="1") {
+							window.location.href=url+"/index.php/Home/User/login.html";
+						}
+					}
+				})
 			}
 		})
 	})()

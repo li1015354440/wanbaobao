@@ -1,4 +1,6 @@
 $(function () {
+//	var url="http://"+location.host+"/";	
+	var url="http://"+location.host+"/wanbaobao/";
 //	备注占位符
 	$("#commodity-remark").on("focus",function () {
 		$(this).val("");
@@ -57,7 +59,7 @@ $(function () {
 		})
 		function buy () {
 			$.ajax({
-				url: "http://"+location.host+"/wanbaobao/index.php/Home/Buy/orderGeneration",
+				url:url+"index.php/Home/Buy/orderGeneration",
 				type: "post",
 				dataType: "json",
 				data: {
@@ -74,7 +76,7 @@ $(function () {
 		}
 		function buy_cart () {
 			$.ajax({
-				url: "http://"+location.host+"/wanbaobao/index.php/Home/Buy/orderGeneration",
+				url: url+"index.php/Home/Buy/orderGeneration",
 				type: "post",
 				dataType: "json",
 				data: {

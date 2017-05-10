@@ -17,6 +17,9 @@
   background: url(../img/jiantou@2x.png) no-repeat center;
   background-size: 100%;
 }
+.pay-header a:nth-child(2) {
+  display: none;
+}
 .pay-header .nobody {
   display: block;
   width: 100%;

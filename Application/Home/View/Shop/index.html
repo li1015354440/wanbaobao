@@ -7,24 +7,29 @@
 		<meta name="keywords" content="" />
 		<meta name="format-detection" content="telephone=no" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-		<title>baobaowan</title>
+		<title>BaoBaoWan</title>
 		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/myreset.css" />
 		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/index.css" />
 		<script src="__PUBLIC__/Home/js/jquery.min.js"></script>
+		<script src="__PUBLIC__/Home/js/jquery.event.drag.js"></script>
+		<script src="__PUBLIC__/Home/js/jquery.touchSlider.js"></script>
 		<script src="__PUBLIC__/Home/js/tools.js"></script>
 	</head>
 
 	<body>
 		<!--banner-->
 		<div id="indexa" data-index="{$indexinfo}"></div>
-		<div class="banner">
-			<!--轮播图元素-->
-			<div class="banner-images" id="img-box">
-				<volist name="banner_list" id="banner">
-					<img src="__PUBLIC__/Thumb/{$banner['banner_thumb']}" alt="baobaowan" />
-				</volist>
+		<!--触摸滑动-->
+		<div class="banner" id="banner-box">
+			<div class="main_img">
+				<div class="banner-images" id="img-box">
+					<volist name="banner_list" id="banner">
+						<img src="__PUBLIC__/Thumb/{$banner['banner_thumb']}" alt="baobaowan" />
+					</volist>
+				</div>
+				<a href="javascript:;" id="btn_prev"></a>
+				<a href="javascript:;" id="btn_next"></a>
 			</div>
-			<!--轮播图控制器-->
 			<div class="pagination-content" id="pagination">
 				<span class="active"></span>
 				<span></span>

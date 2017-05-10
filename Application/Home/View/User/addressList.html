@@ -7,7 +7,7 @@
 		<meta name="keywords" content="" />
 		<meta name="format-detection" content="telephone=no" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-		<title>baobaowan</title>
+		<title>BaoBaoWan</title>
 		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/myreset.css" />
 		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/administered-address.css"/>
 		<script src="__PUBLIC__/Home/js/jquery.min.js"></script>
@@ -19,30 +19,14 @@
 			<volist name="adds" id="add">
 				<li>
 					<p><span>{$add['recept_name']}</span><span>{$add['tel']}</span></p>
-					<p>{$add['province']}{$add['city']}{$add['detail']}</p>
+					<p>{$add['province']} {$add['city']} {$add['country']} {$add['detail']}</p>
 					<div>
 						<a href="{:U('addAddress',['recept_id'=>$add['recept_id'] ,'from'=>'my'] )}">编辑</a>
-						<a href="javascript:;">删除</a>
+						<a href="{:U('deleteAddress',['recept_id'=>$add['recept_id']])}">删除</a>
 					</div>
 				</li>
 
 			</volist>
-			<!--<li>
-				<p><span>赵露露</span><span>15210071540</span></p>
-				<p>河南省安阳市龙安区文明小区12号楼2单元8号</p>
-				<div>
-					<a href="{:U('editAddress',['recept_id'=>$add['recept_id'] ,'from'=>'my'] )}">编辑</a>
-					<a href="javascript:;">删除</a>
-				</div>
-			</li>
-			<li>
-				<p><span>赵露露</span><span>15210071540</span></p>
-				<p>河南省安阳市龙安区文明小区12号楼2单元8号</p>
-				<div>
-					<a href="add-address.html">编辑</a>
-					<a href="javascript:;">删除</a>
-				</div>
-			</li>-->
 		</ul>
 			
 		<!--占位元素-->
