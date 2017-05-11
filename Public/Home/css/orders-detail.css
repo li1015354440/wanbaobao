@@ -53,6 +53,7 @@ body {
   font-size: 0.14rem;
   margin-top: 0.12rem;
   color: #666;
+  text-align: left;
 }
 .orders-list li:last-child > p {
   text-align: left;

@@ -95,6 +95,7 @@ $(function() {
 
 //			结算
 		$("#accounts").on("click", function() {
+			window.localStorage.flag=1;
 			var arr = [];
 			var arr2 = [];
 			for(var i = 0; i < $(".check").length; i++) {

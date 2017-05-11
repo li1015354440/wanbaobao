@@ -29,7 +29,7 @@
 			      </li>
 				<li id="change-address">
 					<span>选择省市</span>
-			        <input type="text"  name="city" id="city" required data-msg-required="请选择地址" placeholder="请选择地址" value="{$recept['province']}{$recept['city']}{$recept['country']}" />
+			        <input type="text" readOnly="true" name="city" id="city" required data-msg-required="请选择地址" placeholder="请选择地址" value="{$recept['province']}{$recept['city']}{$recept['country']}" />
 			        <input type="hidden" name="" value="" id="id_content" province_id="{$recept['province_id']}" city_id="{$recept['city_id']}" country_id="{$recept['country_id']}">
 				</li>
 				<li id="last-li">
@@ -71,7 +71,38 @@
 				<ul id="countrys"></ul>
 			</div>
 		</div>
+		
+		<!--placeholder 占位元素-->
+		<div class="placeholder"></div>
 
+		<!--menu-->
+		<ul class="menu" id="menu">
+			<li>
+				<a href="{:U('Shop/index')}">
+					<img src="__PUBLIC__/Home/img/shouye_defauflt@2x.png" alt="" />
+					<span>首页</span>
+				</a>
+			</li>
+			<li>
+				<a href="{:U('Shop/series')}">
+					<img src="__PUBLIC__/Home/img/xilie_defauflt@2x.png" alt="" />
+					<span>系列</span>
+				</a>
+			</li>
+			<li>
+				<a href="{:U('Buy/cart')}">
+					<img src="__PUBLIC__/Home/img/gouwuche_defauflt@2x.png" alt="" />
+					<span>购物车</span>
+				</a>
+			</li>
+			<li>
+				<a href="{:U('User/my')}">
+					<img src="__PUBLIC__/Home/img/wode_pressed@2x.png" alt="" />
+					<span>我的</span>
+				</a>
+			</li>
+		</ul>
+		
 		<!--js-->
 		<script src="__PUBLIC__/Home/js/add-address.js"></script>
 	</body>

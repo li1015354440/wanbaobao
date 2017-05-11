@@ -1,5 +1,15 @@
 $(function (){
 	(function () {
+//	防止输入法将底部导航顶上去
+		var oHeight=$(document).height();
+		$(window).resize(function () {
+			if($("document").height()<oHeight){
+				$("#menu").css("position","absolute");
+			}else{
+				$("#menu").css("position","fixed");
+			}
+		})
+		
 //		var url="http://"+location.host+"/";
 		var url="http://"+location.host+"/wanbaobao/";
 		var province_id="";
@@ -43,7 +53,7 @@ $(function (){
 							$("#alert-bg2").hide();
 							$("#city").val(city+' '+this.innerHTML); 
 							$.ajax({
-								url:"http://"+location.host+"/index.php/Home/User/getRegion",
+								url:url+"index.php/Home/User/getRegion",
 								type:"post",
 								datatype: "json",
 								data: {"region_id":city_id},
@@ -87,10 +97,16 @@ $(function (){
 		})
 		
 	//	详细地址
-		$("#detail-address").on("click",function () {
+		$("#detail-address").on("focus",function () {
 			this.className="active";
-			if(this.innerHTML=="请填写详细地址，例如街道等"){
-				this.innerHTML="";
+			if(this.value=="请填写详细地址，例如街道等"){
+				this.value="";
+			}
+		})
+		$("#detail-address").on("blur",function () {
+			if(this.value==""){
+				this.value="请填写详细地址，例如街道等";
+				this.className="";
 			}
 		})
 		
@@ -103,42 +119,41 @@ $(function (){
 	//保存
 		$("#save").on("click",function () {
 			$("#sub").click();
-			//	表单验证
-			})
-			$("#jsForm").validate({
-				submitHandler: function() {
-					//验证通过后 的js代码写在这里
-				
-					if($("#detail-address").val() == "请填写详细地址，例如街道等" ||$("#detail-address").val() == ""){
-						$("#area").text("请填写详细地址");
-					}else{
-						$("#area").text("");
-						$.ajax({
-							url:"http://"+location.host+"/index.php/Home/User/addAddress",
-							type:"post",
-							dataType: "json",
-							data: {
-								"goods_id":$("body").attr('data-goods_id'),
-								"quantity":$("body").attr("data-quantity"),
-								"province_id":$("#id_content").attr("province_id"),
-								"city_id":$("#id_content").attr("city_id"),
-								"country_id":$("#id_content").attr("country_id"),
-								"detail":$("#detail-address").val(),
-								"tel":$("#delivery-phone").val(),
-								"recept_name":$("#delivery-man").val(),
-								"from":$("body").attr("data-from"),
-								"recept_id":$("body").attr("data-recept_id")
-							},
-							success: function (e) {
-								console.log(e)
-								if(e.error == '0'){
-									window.location.href=e.url;
-								}
-							}
-						});
+			if($("#detail-address").val() == "请填写详细地址，例如街道等" ||$("#detail-address").val() == ""){
+				$("#area").text("请填写详细地址");
+			}else{
+				$("#area").text("");
+			}
+		})
+		//	表单验证
+		$("#jsForm").validate({
+			submitHandler: function() {
+				//验证通过后 的js代码写在这里
+				$.ajax({
+					url:"http://"+location.host+"/index.php/Home/User/addAddress",
+					type:"post",
+					dataType: "json",
+					data: {
+						"goods_id":$("body").attr('data-goods_id'),
+						"quantity":$("body").attr("data-quantity"),
+						"province_id":$("#id_content").attr("province_id"),
+						"city_id":$("#id_content").attr("city_id"),
+						"country_id":$("#id_content").attr("country_id"),
+						"detail":$("#detail-address").val(),
+						"tel":$("#delivery-phone").val(),
+						"recept_name":$("#delivery-man").val(),
+						"from":$("body").attr("data-from"),
+						"recept_id":$("body").attr("data-recept_id")
+					},
+					success: function (e) {
+						console.log(e)
+						if(e.error == '0'){
+							window.location.href=e.url;
+						}
 					}
-				}
-			})
+				});
+			}
+		})
 		
 	})()
 })
